@@ -17,7 +17,7 @@ import org.bson.types.ObjectId;
  *
  * @author icedo
  */
-public class ResiduoDAO extends BaseDAO<Residuo>{
+public class ResiduoDAO extends IResiduoDAO<Residuo>{
 
     @Override
     public void guardar(Residuo entidad) {
@@ -25,34 +25,7 @@ public class ResiduoDAO extends BaseDAO<Residuo>{
         coleccionR.insertOne(entidad);
     }
 
-    @Override
-    public void eliminar(Residuo entidad) throws DAOException {
-        MongoCollection<Residuo> coleccionR = this.getCollection();
-        coleccionR.deleteOne(Filters.eq("_id", entidad.getId()));
-    }
-
-    @Override
-    public void actualizar(Residuo entidad) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Residuo buscarPorID(ObjectId id) {
-       MongoCollection coleccion = getCollection();
-        Residuo r = (Residuo) coleccion.find(Filters.eq("_id", id)).first();
-        return r;
-    }
-
-    @Override
-    public ArrayList<Residuo> buscarTodos() {
-        MongoCollection<Residuo> coleccionR = this.getCollection();
-        MongoCursor<Residuo> resultadoConsulta = coleccionR.find().iterator();
-        ArrayList<Residuo> listaR = new ArrayList<>();
-        while (resultadoConsulta.hasNext()) {
-            listaR.add(resultadoConsulta.next());
-        }
-        return listaR;
-    }
+   
 
     @Override
     public MongoCollection<Residuo> getCollection() {

@@ -8,19 +8,18 @@ import com.mongodb.MongoClient;
 import com.mongodb.MongoClientOptions;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import exceptions.DAOException;
-import java.util.ArrayList;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
-import org.bson.types.ObjectId;
+
 
 /**
  *
  * @author icedo
+ * @param <T>
  */
-public abstract class BaseDAO<T> {
+public abstract class IResiduoDAO<T> {
     
     public MongoClient getConexionMongoClient() {
         //Creamos un proveedor de codecs para las clases POJOs
@@ -36,10 +35,7 @@ public abstract class BaseDAO<T> {
     }
     
     public abstract void guardar(T entidad);
-    public abstract void eliminar(T entidad) throws DAOException;
-    public abstract void actualizar (T entidad) throws DAOException;
-    public abstract  T buscarPorID(ObjectId id);
-    public abstract ArrayList<T> buscarTodos();
+   
     public abstract MongoCollection<T> getCollection();
     
     

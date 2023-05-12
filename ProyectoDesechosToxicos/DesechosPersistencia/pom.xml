@@ -11,4 +11,20 @@
         <maven.compiler.target>18</maven.compiler.target>
         <exec.mainClass>com.mycompany.desechospersistencia.DesechosPersistencia</exec.mainClass>
     </properties>
+    
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.mongodb/mongo-java-driver -->
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongo-java-driver</artifactId>
+            <version>3.12.13</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>DesechosNegocio</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+    
+    
 </project>

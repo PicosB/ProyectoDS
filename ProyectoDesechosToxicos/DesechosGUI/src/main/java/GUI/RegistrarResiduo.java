@@ -4,8 +4,11 @@
  */
 package GUI;
 
+import entidades.ConstituyenteQuimico;
+import entidades.Residuo;
 import javax.swing.DefaultListModel;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -16,22 +19,18 @@ public class RegistrarResiduo extends javax.swing.JFrame {
     /**
      * Creates new form RegistrarResiduo
      */
-
-
     public RegistrarResiduo() {
         initComponents();
         DefaultListModel<String> modelQuimicos = new DefaultListModel<String>();
         DefaultListModel<String> modelResiduos = new DefaultListModel<String>();
         quimicoslist.setModel(modelQuimicos);
         residuosList.setModel(modelResiduos);
-        
+
         modelQuimicos.addElement("Amoniaco");
         modelQuimicos.addElement("Cianuro");
         modelQuimicos.addElement("Plomo");
         modelQuimicos.addElement("Cloro");
 
-    
-        
     }
 
     /**
@@ -43,6 +42,8 @@ public class RegistrarResiduo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         añadirBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -51,6 +52,25 @@ public class RegistrarResiduo extends javax.swing.JFrame {
         eliminarBtn = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         residuosList = new javax.swing.JList<>();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        txtCodigo = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
+        cancelarBtn = new javax.swing.JButton();
+        registrarBtn = new javax.swing.JButton();
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,54 +104,101 @@ public class RegistrarResiduo extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(residuosList);
 
+        jLabel2.setText("Nombre del resiudo");
+
+        jLabel3.setText("Codigo del residuo");
+
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreActionPerformed(evt);
+            }
+        });
+
+        cancelarBtn.setText("Cancelar");
+        cancelarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarBtnActionPerformed(evt);
+            }
+        });
+
+        registrarBtn.setText("Registrar");
+        registrarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registrarBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(103, 103, 103)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2))
+                .addGap(26, 26, 26)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.Alignment.LEADING))
+                .addGap(131, 131, 131))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(80, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(añadirBtn)
+                .addGap(47, 47, 47)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(eliminarBtn)
+                .addGap(20, 20, 20))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(288, 288, 288)
+                        .addGap(271, 271, 271)
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(añadirBtn)
-                        .addGap(88, 88, 88)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
-                        .addComponent(eliminarBtn)))
-                .addContainerGap(27, Short.MAX_VALUE))
+                        .addGap(207, 207, 207)
+                        .addComponent(registrarBtn)
+                        .addGap(58, 58, 58)
+                        .addComponent(cancelarBtn)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel1)
+                .addGap(30, 30, 30)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(55, 55, 55)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(68, 68, 68)
-                                .addComponent(añadirBtn))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(63, 63, 63)
-                                .addComponent(eliminarBtn)))))
-                .addContainerGap(143, Short.MAX_VALUE))
+                        .addComponent(jLabel3)
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21)
+                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(48, 48, 48)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(eliminarBtn)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(añadirBtn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cancelarBtn)
+                    .addComponent(registrarBtn))
+                .addGap(55, 55, 55))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 95, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,38 +213,56 @@ public class RegistrarResiduo extends javax.swing.JFrame {
 
     private void añadirBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_añadirBtnActionPerformed
         // TODO add your handling code here:
-        
-        
-        
-        String[] row = {this.quimicoslist.getSelectedValue()};
-     
-        
-        
 
+        // codigo para mover elementos de una lista a otra
         this.quimicoslist.remove(this);
         DefaultListModel<String> modelQ = (DefaultListModel<String>) quimicoslist.getModel();
         DefaultListModel<String> modelR = (DefaultListModel<String>) residuosList.getModel();
         String selectedValue = quimicoslist.getSelectedValue();
         modelQ.removeElement(selectedValue);
         quimicoslist.repaint();
-        
         modelR.addElement(selectedValue);
-        
-        
+
+        //creacion del residuo con datos
+
     }//GEN-LAST:event_añadirBtnActionPerformed
 
     private void eliminarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarBtnActionPerformed
         // TODO add your handling code here:
         DefaultListModel<String> modelQ = (DefaultListModel<String>) quimicoslist.getModel();
         DefaultListModel<String> modelR = (DefaultListModel<String>) residuosList.getModel();
-        
+
         String selectedValue = residuosList.getSelectedValue();
         modelQ.addElement(selectedValue);
         quimicoslist.repaint();
-        
+
         modelR.removeElement(selectedValue);
-        
+
     }//GEN-LAST:event_eliminarBtnActionPerformed
+
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreActionPerformed
+
+    private void registrarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarBtnActionPerformed
+        // TODO add your handling code here:
+       
+        ConstituyenteQuimico constituyenteQuimico = new ConstituyenteQuimico(quimicoslist.getSelectedValue());
+        String codigo = txtCodigo.getText();
+        String nombre = txtNombre.getText();
+
+        Residuo res = new Residuo(codigo, nombre, constituyenteQuimico, null);
+
+        JOptionPane.showMessageDialog(null, codigo);
+        JOptionPane.showMessageDialog(null, nombre);
+        JOptionPane.showMessageDialog(null, constituyenteQuimico);
+        
+    }//GEN-LAST:event_registrarBtnActionPerformed
+
+    private void cancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBtnActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_cancelarBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -216,12 +301,20 @@ public class RegistrarResiduo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton añadirBtn;
+    private javax.swing.JButton cancelarBtn;
     private javax.swing.JButton eliminarBtn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable1;
     private javax.swing.JList<String> quimicoslist;
+    private javax.swing.JButton registrarBtn;
     private javax.swing.JList<String> residuosList;
+    private javax.swing.JTextField txtCodigo;
+    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }

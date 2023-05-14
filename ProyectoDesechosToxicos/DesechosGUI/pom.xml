@@ -19,7 +19,16 @@
             <artifactId>mongo-java-driver</artifactId>
             <version>3.12.13</version>
         </dependency>
-
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>DesechosNegocio</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>DesechosPersistencia</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
     
 </project>

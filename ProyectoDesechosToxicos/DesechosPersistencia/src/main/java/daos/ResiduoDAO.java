@@ -11,29 +11,37 @@ import com.mongodb.client.model.Filters;
 import entidades.Residuo;
 import exceptions.DAOException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.text.Document;
 import org.bson.types.ObjectId;
 
 /**
  *
  * @author icedo
  */
-public class ResiduoDAO extends IResiduoDAO<Residuo>{
+public class ResiduoDAO extends IResiduoDAO {
 
     @Override
-    public void guardar(Residuo entidad) {
+    public void guardar(Residuo residuo) throws DAOException {
         MongoCollection<Residuo> coleccionR = this.getCollection();
-        coleccionR.insertOne(entidad);
+        coleccionR.insertOne(residuo);
     }
 
-   
+    @Override
+    public Residuo verificarExistencia(String codigo) throws DAOException {
+        MongoCollection<Residuo> coleccionR = this.getCollection();
+
+        Residuo residuoEncontrado = coleccionR.find(Filters.eq("codigo", codigo)).first();
+
+       return residuoEncontrado;
+    }
 
     @Override
     public MongoCollection<Residuo> getCollection() {
         MongoDatabase db = this.getMongoDB("residuosBD");
-        MongoCollection<Residuo> colleccionResiduos = db.getCollection("residuo", Residuo.class);
+        MongoCollection<Residuo> colleccionResiduos = db.getCollection("residuo", Residuo.class
+        );
         return colleccionResiduos;
     }
-    
-    
-    
+
 }

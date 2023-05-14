@@ -28,7 +28,7 @@ public class ResiduoDAO extends IResiduoDAO {
     }
 
     @Override
-    public Residuo verificarExistencia(String codigo) throws DAOException {
+    public Residuo verificaExistencia(String codigo) throws DAOException {
         MongoCollection<Residuo> coleccionR = this.getCollection();
 
         Residuo residuoEncontrado = coleccionR.find(Filters.eq("codigo", codigo)).first();

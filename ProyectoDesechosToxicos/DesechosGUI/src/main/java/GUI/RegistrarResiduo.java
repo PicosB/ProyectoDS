@@ -104,7 +104,7 @@ public class RegistrarResiduo extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(residuosList);
 
-        jLabel2.setText("Nombre del resiudo");
+        jLabel2.setText("Nombre del residuo");
 
         jLabel3.setText("Codigo del residuo");
 

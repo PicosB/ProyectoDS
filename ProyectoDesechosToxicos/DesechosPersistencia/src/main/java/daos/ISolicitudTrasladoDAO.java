@@ -8,6 +8,7 @@ import com.mongodb.MongoClient;
 import com.mongodb.MongoClientOptions;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import entidades.EmpresaTransportista;
 import entidades.SolicitudTraslado;
 import exceptions.DAOException;
 import org.bson.codecs.configuration.CodecRegistry;
@@ -38,6 +39,8 @@ public abstract class ISolicitudTrasladoDAO {
 
    
     public abstract SolicitudTraslado verificaExistencia(String codigo) throws DAOException;
+    
+    public abstract void insertarEmpresaTransportista(String codigo, EmpresaTransportista empresatransportista) throws DAOException;
 
     public abstract MongoCollection<SolicitudTraslado> getCollection();
     

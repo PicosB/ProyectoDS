@@ -19,28 +19,34 @@ public class SolicitudTraslado {
     private Date fechaSolicitud;
     private int cantidadresiduo;
     private Productor productor;
+    private EmpresaTransportista empresatransportista;
 
   
     
     public SolicitudTraslado() {
     }
 
-    public SolicitudTraslado(ObjectId id, String codigo, Residuo residuo, Date fechaSolicitud, int cantidadresiduo, Productor productor) {
+    public SolicitudTraslado(ObjectId id, String codigo, Residuo residuo, Date fechaSolicitud, int cantidadresiduo, Productor productor, EmpresaTransportista empresatransportista) {
         this.id = id;
         this.codigo = codigo;
         this.residuo = residuo;
         this.fechaSolicitud = fechaSolicitud;
         this.cantidadresiduo = cantidadresiduo;
         this.productor = productor;
+        this.empresatransportista = empresatransportista;
     }
 
-    public SolicitudTraslado(String codigo, Residuo residuo, Date fechaSolicitud, int cantidadresiduo, Productor productor) {
+    public SolicitudTraslado(String codigo, Residuo residuo, Date fechaSolicitud, int cantidadresiduo, Productor productor, EmpresaTransportista empresatransportista) {
         this.codigo = codigo;
         this.residuo = residuo;
         this.fechaSolicitud = fechaSolicitud;
         this.cantidadresiduo = cantidadresiduo;
         this.productor = productor;
+        this.empresatransportista = empresatransportista;
     }
+
+    
+    
 
     public ObjectId getId() {
         return id;
@@ -88,6 +94,14 @@ public class SolicitudTraslado {
 
     public void setProductor(Productor productor) {
         this.productor = productor;
+    }
+
+    public EmpresaTransportista getEmpresatransportista() {
+        return empresatransportista;
+    }
+
+    public void setEmpresatransportista(EmpresaTransportista empresatransportista) {
+        this.empresatransportista = empresatransportista;
     }
 
    

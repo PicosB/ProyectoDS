@@ -4,6 +4,7 @@
  */
 package entidades;
 
+import java.util.ArrayList;
 import java.util.Date;
 import org.bson.types.ObjectId;
 
@@ -25,12 +26,14 @@ public class Traslado {
     
     private SolicitudTraslado solicitudtraslado;
     
-    private Vehiculo vehiculo;
+    private ArrayList<Float> cantidadresiduo;
+    
+    private EmpresaTransportista empresatransportista;
     
     public Traslado() {
     }
 
-    public Traslado(ObjectId id, String codigo, float kilometros, float costo, Date fechaLlegada, String tratamiento, SolicitudTraslado solicitudtraslado, Vehiculo vehiculo) {
+    public Traslado(ObjectId id, String codigo, float kilometros, float costo, Date fechaLlegada, String tratamiento, SolicitudTraslado solicitudtraslado, ArrayList<Float> cantidadresiduo, EmpresaTransportista empresatransportista) {
         this.id = id;
         this.codigo = codigo;
         this.kilometros = kilometros;
@@ -38,17 +41,19 @@ public class Traslado {
         this.fechaLlegada = fechaLlegada;
         this.tratamiento = tratamiento;
         this.solicitudtraslado = solicitudtraslado;
-        this.vehiculo = vehiculo;
+        this.cantidadresiduo = cantidadresiduo;
+        this.empresatransportista = empresatransportista;
     }
 
-    public Traslado(String codigo, float kilometros, float costo, Date fechaLlegada, String tratamiento, SolicitudTraslado solicitudtraslado, Vehiculo vehiculo) {
+    public Traslado(String codigo, float kilometros, float costo, Date fechaLlegada, String tratamiento, SolicitudTraslado solicitudtraslado, ArrayList<Float> cantidadresiduo, EmpresaTransportista empresatransportista) {
         this.codigo = codigo;
         this.kilometros = kilometros;
         this.costo = costo;
         this.fechaLlegada = fechaLlegada;
         this.tratamiento = tratamiento;
         this.solicitudtraslado = solicitudtraslado;
-        this.vehiculo = vehiculo;
+        this.cantidadresiduo = cantidadresiduo;
+        this.empresatransportista = empresatransportista;
     }
 
     public ObjectId getId() {
@@ -107,15 +112,20 @@ public class Traslado {
         this.solicitudtraslado = solicitudtraslado;
     }
 
-    public Vehiculo getVehiculo() {
-        return vehiculo;
+    public ArrayList<Float> getCantidadresiduo() {
+        return cantidadresiduo;
     }
 
-    public void setVehiculo(Vehiculo vehiculo) {
-        this.vehiculo = vehiculo;
+    public void setCantidadresiduo(ArrayList<Float> cantidadresiduo) {
+        this.cantidadresiduo = cantidadresiduo;
     }
 
-    
+    public EmpresaTransportista getEmpresatransportista() {
+        return empresatransportista;
+    }
 
-    
+    public void setEmpresatransportista(EmpresaTransportista empresatransportista) {
+        this.empresatransportista = empresatransportista;
+    }
+
 }

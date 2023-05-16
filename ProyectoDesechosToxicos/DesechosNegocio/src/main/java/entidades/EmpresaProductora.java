@@ -12,7 +12,7 @@ import org.bson.types.ObjectId;
  */
 public class EmpresaProductora extends Empresa {
     
-   
+   private String ciudad;
     
     public EmpresaProductora() {
     }
@@ -21,11 +21,19 @@ public class EmpresaProductora extends Empresa {
    
 
     public EmpresaProductora(ObjectId id, String nombre, String ciudad) {
-        super(id, nombre, ciudad);
+        super(id, nombre);
     }
 
     public EmpresaProductora(String nombre, String ciudad) {
-        super(nombre, ciudad);
+        super(nombre);
+    }
+
+    public String getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
     }
 
     

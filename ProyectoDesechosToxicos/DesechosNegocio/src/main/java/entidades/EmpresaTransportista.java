@@ -17,12 +17,12 @@ public class EmpresaTransportista extends Empresa{
     public EmpresaTransportista() {
     }
 
-    public EmpresaTransportista(ObjectId id, String nombre, String ciudad) {
-        super(id, nombre, ciudad);
+    public EmpresaTransportista(ObjectId id, String nombre) {
+        super(id, nombre);
     }
 
-    public EmpresaTransportista(String nombre, String ciudad) {
-        super(nombre, ciudad);
+    public EmpresaTransportista(String nombre) {
+        super(nombre);
     }
     
     

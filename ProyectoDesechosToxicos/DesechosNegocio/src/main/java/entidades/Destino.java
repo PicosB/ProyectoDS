@@ -13,20 +13,19 @@ import org.bson.types.ObjectId;
 public class Destino {
     
     private ObjectId id;
-    private String nombre, tratamiento;
+    private String nombre;
 
     public Destino() {
     }
 
-    public Destino(ObjectId id, String nombre, String tratamiento) {
+    public Destino(ObjectId id, String nombre) {
         this.id = id;
         this.nombre = nombre;
-        this.tratamiento = tratamiento;
     }
 
-    public Destino(String nombre, String tratamiento) {
+    public Destino(String nombre) {
         this.nombre = nombre;
-        this.tratamiento = tratamiento;
+        
     }
 
     public ObjectId getId() {
@@ -45,15 +44,6 @@ public class Destino {
         this.nombre = nombre;
     }
 
-    public String getTratamiento() {
-        return tratamiento;
-    }
-
-    public void setTratamiento(String tratamiento) {
-        this.tratamiento = tratamiento;
-    }
-    
-    
     
     
     

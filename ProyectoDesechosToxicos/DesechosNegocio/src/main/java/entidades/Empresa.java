@@ -13,20 +13,18 @@ import org.bson.types.ObjectId;
 public class Empresa {
     
     private ObjectId id;
-    private String nombre, ciudad;
+    private String nombre;
 
     public Empresa() {
     }
 
-    public Empresa(ObjectId id, String nombre, String ciudad) {
+    public Empresa(ObjectId id, String nombre) {
         this.id = id;
         this.nombre = nombre;
-        this.ciudad = ciudad;
     }
 
-    public Empresa(String nombre, String ciudad) {
+    public Empresa(String nombre) {
         this.nombre = nombre;
-        this.ciudad = ciudad;
     }
 
     public ObjectId getId() {
@@ -45,12 +43,5 @@ public class Empresa {
         this.nombre = nombre;
     }
 
-    public String getCiudad() {
-        return ciudad;
-    }
-
-    public void setCiudad(String ciudad) {
-        this.ciudad = ciudad;
-    }
    
 }

@@ -19,28 +19,32 @@ public class Traslado {
     
     private Date fechaLlegada;
     
-    private Destino destino;
-
-    private Residuo residuo;
+    private String tratamiento;
+    
+    private SolicitudTraslado solicitudtraslado;
+    
+    private Vehiculo vehiculo;
     
     public Traslado() {
     }
 
-    public Traslado(ObjectId id, float kilometros, float costo, Date fechaLlegada, Destino destino, Residuo residuo) {
+    public Traslado(ObjectId id, float kilometros, float costo, Date fechaLlegada, String tratamiento, SolicitudTraslado solicitudtraslado, Vehiculo vehiculo) {
         this.id = id;
         this.kilometros = kilometros;
         this.costo = costo;
         this.fechaLlegada = fechaLlegada;
-        this.destino = destino;
-        this.residuo = residuo;
+        this.tratamiento = tratamiento;
+        this.solicitudtraslado = solicitudtraslado;
+        this.vehiculo = vehiculo;
     }
 
-    public Traslado(float kilometros, float costo, Date fechaLlegada, Destino destino, Residuo residuo) {
+    public Traslado(float kilometros, float costo, Date fechaLlegada, String tratamiento, SolicitudTraslado solicitudtraslado, Vehiculo vehiculo) {
         this.kilometros = kilometros;
         this.costo = costo;
         this.fechaLlegada = fechaLlegada;
-        this.destino = destino;
-        this.residuo = residuo;
+        this.tratamiento = tratamiento;
+        this.solicitudtraslado = solicitudtraslado;
+        this.vehiculo = vehiculo;
     }
 
     public ObjectId getId() {
@@ -75,27 +79,31 @@ public class Traslado {
         this.fechaLlegada = fechaLlegada;
     }
 
-    public Destino getDestino() {
-        return destino;
+    public String getTratamiento() {
+        return tratamiento;
     }
 
-    public void setDestino(Destino destino) {
-        this.destino = destino;
+    public void setTratamiento(String tratamiento) {
+        this.tratamiento = tratamiento;
     }
 
-    public Residuo getResiduo() {
-        return residuo;
+    public SolicitudTraslado getSolicitudtraslado() {
+        return solicitudtraslado;
     }
 
-    public void setResiduo(Residuo residuo) {
-        this.residuo = residuo;
+    public void setSolicitudtraslado(SolicitudTraslado solicitudtraslado) {
+        this.solicitudtraslado = solicitudtraslado;
+    }
+
+    public Vehiculo getVehiculo() {
+        return vehiculo;
+    }
+
+    public void setVehiculo(Vehiculo vehiculo) {
+        this.vehiculo = vehiculo;
     }
 
     
 
-   
-    
-    
-    
     
 }

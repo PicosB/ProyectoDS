@@ -16,38 +16,38 @@ public class SolicitudTraslado {
     private ObjectId id;
     private String codigo;
     private Residuo residuo;
-    private Date fechaSolicitud;
-    private int cantidadresiduo;
-    private Productor productor;
-    private EmpresaTransportista empresatransportista;
+    private Date fechasolicitud;
+    private float cantidadresiduo;
+    private boolean asignado;
+    private Destino destino;
 
   
     
     public SolicitudTraslado() {
     }
 
-    public SolicitudTraslado(ObjectId id, String codigo, Residuo residuo, Date fechaSolicitud, int cantidadresiduo, Productor productor, EmpresaTransportista empresatransportista) {
+    public SolicitudTraslado(ObjectId id, String codigo, Residuo residuo, Date fechasolicitud, float cantidadresiduo, boolean asignado, Destino destino) {
         this.id = id;
         this.codigo = codigo;
         this.residuo = residuo;
-        this.fechaSolicitud = fechaSolicitud;
+        this.fechasolicitud = fechasolicitud;
         this.cantidadresiduo = cantidadresiduo;
-        this.productor = productor;
-        this.empresatransportista = empresatransportista;
+        this.asignado = asignado;
+        this.destino = destino;
     }
 
-    public SolicitudTraslado(String codigo, Residuo residuo, Date fechaSolicitud, int cantidadresiduo, Productor productor, EmpresaTransportista empresatransportista) {
+    public SolicitudTraslado(String codigo, Residuo residuo, Date fechasolicitud, float cantidadresiduo, boolean asignado, Destino destino) {
         this.codigo = codigo;
         this.residuo = residuo;
-        this.fechaSolicitud = fechaSolicitud;
+        this.fechasolicitud = fechasolicitud;
         this.cantidadresiduo = cantidadresiduo;
-        this.productor = productor;
-        this.empresatransportista = empresatransportista;
+        this.asignado = asignado;
+        this.destino = destino;
     }
 
     
-    
 
+    
     public ObjectId getId() {
         return id;
     }
@@ -72,36 +72,36 @@ public class SolicitudTraslado {
         this.residuo = residuo;
     }
 
-    public Date getFechaSolicitud() {
-        return fechaSolicitud;
+    public Date getFechasolicitud() {
+        return fechasolicitud;
     }
 
-    public void setFechaSolicitud(Date fechaSolicitud) {
-        this.fechaSolicitud = fechaSolicitud;
+    public void setFechasolicitud(Date fechasolicitud) {
+        this.fechasolicitud = fechasolicitud;
     }
 
-    public int getCantidadresiduo() {
+    public float getCantidadresiduo() {
         return cantidadresiduo;
     }
 
-    public void setCantidadresiduo(int cantidadresiduo) {
+    public void setCantidadresiduo(float cantidadresiduo) {
         this.cantidadresiduo = cantidadresiduo;
     }
 
-    public Productor getProductor() {
-        return productor;
+    public boolean isAsignado() {
+        return asignado;
     }
 
-    public void setProductor(Productor productor) {
-        this.productor = productor;
+    public void setAsignado(boolean asignado) {
+        this.asignado = asignado;
     }
 
-    public EmpresaTransportista getEmpresatransportista() {
-        return empresatransportista;
+    public Destino getDestino() {
+        return destino;
     }
 
-    public void setEmpresatransportista(EmpresaTransportista empresatransportista) {
-        this.empresatransportista = empresatransportista;
+    public void setDestino(Destino destino) {
+        this.destino = destino;
     }
 
    

@@ -15,6 +15,8 @@ public class Traslado {
     
     private ObjectId id;
     
+    private String codigo;
+    
     private float kilometros, costo;
     
     private Date fechaLlegada;
@@ -28,8 +30,9 @@ public class Traslado {
     public Traslado() {
     }
 
-    public Traslado(ObjectId id, float kilometros, float costo, Date fechaLlegada, String tratamiento, SolicitudTraslado solicitudtraslado, Vehiculo vehiculo) {
+    public Traslado(ObjectId id, String codigo, float kilometros, float costo, Date fechaLlegada, String tratamiento, SolicitudTraslado solicitudtraslado, Vehiculo vehiculo) {
         this.id = id;
+        this.codigo = codigo;
         this.kilometros = kilometros;
         this.costo = costo;
         this.fechaLlegada = fechaLlegada;
@@ -38,7 +41,8 @@ public class Traslado {
         this.vehiculo = vehiculo;
     }
 
-    public Traslado(float kilometros, float costo, Date fechaLlegada, String tratamiento, SolicitudTraslado solicitudtraslado, Vehiculo vehiculo) {
+    public Traslado(String codigo, float kilometros, float costo, Date fechaLlegada, String tratamiento, SolicitudTraslado solicitudtraslado, Vehiculo vehiculo) {
+        this.codigo = codigo;
         this.kilometros = kilometros;
         this.costo = costo;
         this.fechaLlegada = fechaLlegada;
@@ -55,6 +59,14 @@ public class Traslado {
         this.id = id;
     }
 
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+    
     public float getKilometros() {
         return kilometros;
     }

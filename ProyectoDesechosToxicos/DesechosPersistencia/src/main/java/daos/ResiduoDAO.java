@@ -5,15 +5,10 @@
 package daos;
 
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import entidades.Residuo;
 import exceptions.DAOException;
-import java.util.ArrayList;
-import javax.swing.JOptionPane;
-import javax.swing.text.Document;
-import org.bson.types.ObjectId;
 
 /**
  *
@@ -39,8 +34,7 @@ public class ResiduoDAO extends IResiduoDAO {
     @Override
     public MongoCollection<Residuo> getCollection() {
         MongoDatabase db = this.getMongoDB("residuosBD");
-        MongoCollection<Residuo> colleccionResiduos = db.getCollection("residuo", Residuo.class
-        );
+        MongoCollection<Residuo> colleccionResiduos = db.getCollection("residuo", Residuo.class);
         return colleccionResiduos;
     }
 

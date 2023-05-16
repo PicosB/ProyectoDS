@@ -8,7 +8,6 @@ import com.mongodb.MongoClient;
 import com.mongodb.MongoClientOptions;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.model.Filters;
 import entidades.Residuo;
 import exceptions.DAOException;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
@@ -22,7 +21,7 @@ import org.bson.codecs.pojo.PojoCodecProvider;
  */
 public abstract class IResiduoDAO {
     
-     public MongoClient getConexionMongoClient() {
+    public MongoClient getConexionMongoClient() {
         //Creamos un proveedor de codecs para las clases POJOs
         CodecRegistry pojoCodecRegistry = fromRegistries(MongoClient.getDefaultCodecRegistry(), fromProviders(PojoCodecProvider.builder().automatic(true).build()));
         
@@ -35,7 +34,7 @@ public abstract class IResiduoDAO {
         return getConexionMongoClient().getDatabase(nomBD);
     }
     
-     public abstract void guardar(Residuo residuo) throws DAOException;
+    public abstract void guardar(Residuo residuo) throws DAOException;
 
    
     public abstract Residuo verificaExistencia(String codigo) throws DAOException;

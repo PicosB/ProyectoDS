@@ -7,9 +7,11 @@ package daos;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
-import entidades.EmpresaTransportista;
+import com.mongodb.client.model.Updates;
+import com.mongodb.client.result.UpdateResult;
 import entidades.SolicitudTraslado;
 import exceptions.DAOException;
+import org.bson.conversions.Bson;
 
 /**
  *
@@ -33,20 +35,20 @@ public class SolicitudTrasladoDAO extends ISolicitudTrasladoDAO {
     }
 
     @Override
-    public void insertarEmpresaTransportista(String codigo, EmpresaTransportista empresaTransportista) throws DAOException {
+    public void marcarAsignado(SolicitudTraslado solicitudtraslado) throws DAOException {
         MongoCollection<SolicitudTraslado> coleccionST = this.getCollection();
 
-        // Verificar si la solicitud de traslado existe
-        SolicitudTraslado solicitudEncontrada = verificaExistencia(codigo);
+        // Crea un filtro para encontrar la solicitud de traslado por su identificador
+        Bson filtro = Filters.eq("codigo", solicitudtraslado.getCodigo());
 
-        if (solicitudEncontrada != null) {
-            // Insertar el objeto EmpresaTransportista en la solicitud de traslado
-            solicitudEncontrada.setEmpresatransportista(empresaTransportista);
+        // Crea un objeto de actualización para marcar el atributo "asignado" como true
+        Bson actualizacion = Updates.set("asignado", true);
 
-            // Guardar los cambios en la base de datos
-            coleccionST.replaceOne(Filters.eq("codigo", codigo), solicitudEncontrada);
-        } else {
-            throw new DAOException("No se encontró la solicitud de traslado con el código " + codigo);
+        // Ejecuta la operación de actualización
+        UpdateResult resultado = coleccionST.updateOne(filtro, actualizacion);
+
+        if (resultado.getModifiedCount() != 1) {
+            throw new DAOException("No se pudo actualizar la solicitud de traslado");
         }
     }
 

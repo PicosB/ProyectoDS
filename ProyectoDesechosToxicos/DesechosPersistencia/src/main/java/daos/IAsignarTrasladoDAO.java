@@ -8,18 +8,18 @@ import com.mongodb.MongoClient;
 import com.mongodb.MongoClientOptions;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import entidades.SolicitudTraslado;
+import entidades.Traslado;
 import exceptions.DAOException;
-import org.bson.codecs.configuration.CodecRegistry;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
+import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
 
 /**
  *
  * @author icedo
  */
-public abstract class ISolicitudTrasladoDAO {
+public abstract class IAsignarTrasladoDAO {
     
     public MongoClient getConexionMongoClient() {
         //Creamos un proveedor de codecs para las clases POJOs
@@ -34,13 +34,13 @@ public abstract class ISolicitudTrasladoDAO {
         return getConexionMongoClient().getDatabase(nomBD);
     }
     
-    public abstract void guardar(SolicitudTraslado solicitudtraslado) throws DAOException;
     
-    public abstract void marcarAsignado(SolicitudTraslado solicitudtraslado) throws DAOException;
+    public abstract void guardar(Traslado traslado) throws DAOException;
+
    
-    public abstract SolicitudTraslado verificaExistencia(String codigo) throws DAOException;
-    
-    public abstract MongoCollection<SolicitudTraslado> getCollection();
+    public abstract Traslado verificaExistencia(String codigo) throws DAOException;
+
+    public abstract MongoCollection<Traslado> getCollection();
     
     
     

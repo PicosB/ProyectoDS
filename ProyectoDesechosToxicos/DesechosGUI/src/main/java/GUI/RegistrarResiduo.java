@@ -42,8 +42,12 @@ public class RegistrarResiduo extends javax.swing.JFrame {
         ConstituyenteQuimico constituyenteQuimicoPrimario = new ConstituyenteQuimico();
         ConstituyenteQuimico constituyenteQuimicoSecundario = new ConstituyenteQuimico();
 
-        Residuo residuo = new Residuo(codigo, nombre, null, null, null);
-
+        Residuo residuo = new Residuo();
+        
+        residuo.setCodigo(codigo);
+        residuo.setNombre(nombre);
+        residuo.setEmpresaproductora(null);
+        
         DefaultListModel<String> modelR = (DefaultListModel<String>) residuosList.getModel();
         ArrayList<String> arrayList = new ArrayList<>();
         for (int i = 0; i < modelR.getSize() - 1; i++) {
@@ -55,6 +59,7 @@ public class RegistrarResiduo extends javax.swing.JFrame {
 
         try{
            residuoDAO.guardar(residuo);
+           JOptionPane.showMessageDialog(null, "Se agregó un residuo");
         }catch(Exception e ){
             JOptionPane.showMessageDialog(null, "Ocurrió un error al momento de registrar");
         }

@@ -90,4 +90,11 @@ public class Residuo {
         this.empresaproductora = empresaproductora;
     }
 
+    @Override
+    public String toString() {
+        return nombre;
+    }
+    
+    
+
 }

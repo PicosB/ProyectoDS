@@ -11,29 +11,35 @@ import org.bson.types.ObjectId;
  * @author icedo
  */
 public class Residuo {
-    
+
     private ObjectId id;
     private String codigo, nombre;
-    private ConstituyenteQuimico constituyentequimico;
+    private ConstituyenteQuimico constituyenteQuimicoPrimario;
+
+    private ConstituyenteQuimico constituyenteQuimicoSecundario;
     private EmpresaProductora empresaproductora;
 
     public Residuo() {
     }
 
-    public Residuo(ObjectId id, String codigo, String nombre, ConstituyenteQuimico constituyentequimico, EmpresaProductora empresaproductora) {
+    public Residuo(ObjectId id, String codigo, String nombre, ConstituyenteQuimico constituyenteQuimicoPrimario, ConstituyenteQuimico constituyenteQuimicoSecundario, EmpresaProductora empresaproductora) {
         this.id = id;
         this.codigo = codigo;
         this.nombre = nombre;
-        this.constituyentequimico = constituyentequimico;
+        this.constituyenteQuimicoPrimario = constituyenteQuimicoPrimario;
+        this.constituyenteQuimicoSecundario = constituyenteQuimicoSecundario;
         this.empresaproductora = empresaproductora;
     }
 
-    public Residuo(String codigo, String nombre, ConstituyenteQuimico constituyentequimico, EmpresaProductora empresaproductora) {
+    public Residuo(String codigo, String nombre, ConstituyenteQuimico constituyenteQuimicoPrimario, ConstituyenteQuimico constituyenteQuimicoSecundario, EmpresaProductora empresaproductora) {
         this.codigo = codigo;
         this.nombre = nombre;
-        this.constituyentequimico = constituyentequimico;
+        this.constituyenteQuimicoPrimario = constituyenteQuimicoPrimario;
+        this.constituyenteQuimicoSecundario = constituyenteQuimicoSecundario;
         this.empresaproductora = empresaproductora;
     }
+
+   
 
     public ObjectId getId() {
         return id;
@@ -59,14 +65,23 @@ public class Residuo {
         this.nombre = nombre;
     }
 
-    public ConstituyenteQuimico getConstituyentequimico() {
-        return constituyentequimico;
+    public ConstituyenteQuimico getConstituyenteQuimicoPrimario() {
+        return constituyenteQuimicoPrimario;
     }
 
-    public void setConstituyentequimico(ConstituyenteQuimico constituyentequimico) {
-        this.constituyentequimico = constituyentequimico;
+    public void setConstituyenteQuimicoPrimario(ConstituyenteQuimico constituyenteQuimicoPrimario) {
+        this.constituyenteQuimicoPrimario = constituyenteQuimicoPrimario;
     }
 
+    public ConstituyenteQuimico getConstituyenteQuimicoSecundario() {
+        return constituyenteQuimicoSecundario;
+    }
+
+    public void setConstituyenteQuimicoSecundario(ConstituyenteQuimico constituyenteQuimicoSecundario) {
+        this.constituyenteQuimicoSecundario = constituyenteQuimicoSecundario;
+    }
+
+  
     public EmpresaProductora getEmpresaproductora() {
         return empresaproductora;
     }
@@ -75,18 +90,4 @@ public class Residuo {
         this.empresaproductora = empresaproductora;
     }
 
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }

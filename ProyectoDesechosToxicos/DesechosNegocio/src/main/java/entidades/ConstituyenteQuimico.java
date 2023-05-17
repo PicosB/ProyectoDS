@@ -11,17 +11,14 @@ import org.bson.types.ObjectId;
  * @author icedo
  */
 public class ConstituyenteQuimico {
-    
+
     private ObjectId id;
     private String nombre;
 
-    
-    
-    
+
     public ConstituyenteQuimico() {
     }
 
-    
     public ConstituyenteQuimico(ObjectId id, String nombre) {
         this.id = id;
         this.nombre = nombre;
@@ -46,9 +43,5 @@ public class ConstituyenteQuimico {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
-    
-    
-    
-    
+
 }

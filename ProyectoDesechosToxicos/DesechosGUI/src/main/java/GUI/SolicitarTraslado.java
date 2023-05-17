@@ -10,11 +10,10 @@ import com.mongodb.client.MongoCursor;
 import daos.IResiduoDAO;
 import daos.ResiduoDAO;
 import entidades.Residuo;
-import java.awt.List;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
-import javax.swing.text.Document;
+
 
 /**
  *

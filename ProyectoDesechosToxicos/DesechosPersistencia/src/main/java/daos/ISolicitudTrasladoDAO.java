@@ -36,7 +36,7 @@ public abstract class ISolicitudTrasladoDAO {
     
     public abstract void guardar(SolicitudTraslado solicitudtraslado) throws DAOException;
     
-    public abstract void marcarAsignado(SolicitudTraslado solicitudtraslado) throws DAOException;
+    public abstract void marcarAsignado(String codigo) throws DAOException;
    
     public abstract SolicitudTraslado verificaExistencia(String codigo) throws DAOException;
     

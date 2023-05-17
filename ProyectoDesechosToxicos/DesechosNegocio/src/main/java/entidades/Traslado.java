@@ -30,10 +30,12 @@ public class Traslado {
     
     private EmpresaTransportista empresatransportista;
     
+    private Vehiculo vehiculo;
+    
     public Traslado() {
     }
 
-    public Traslado(ObjectId id, String codigo, float kilometros, float costo, Date fechaLlegada, String tratamiento, SolicitudTraslado solicitudtraslado, ArrayList<Float> cantidadresiduo, EmpresaTransportista empresatransportista) {
+    public Traslado(ObjectId id, String codigo, float kilometros, float costo, Date fechaLlegada, String tratamiento, SolicitudTraslado solicitudtraslado, ArrayList<Float> cantidadresiduo, EmpresaTransportista empresatransportista, Vehiculo vehiculo) {
         this.id = id;
         this.codigo = codigo;
         this.kilometros = kilometros;
@@ -43,9 +45,10 @@ public class Traslado {
         this.solicitudtraslado = solicitudtraslado;
         this.cantidadresiduo = cantidadresiduo;
         this.empresatransportista = empresatransportista;
+        this.vehiculo = vehiculo;
     }
 
-    public Traslado(String codigo, float kilometros, float costo, Date fechaLlegada, String tratamiento, SolicitudTraslado solicitudtraslado, ArrayList<Float> cantidadresiduo, EmpresaTransportista empresatransportista) {
+    public Traslado(String codigo, float kilometros, float costo, Date fechaLlegada, String tratamiento, SolicitudTraslado solicitudtraslado, ArrayList<Float> cantidadresiduo, EmpresaTransportista empresatransportista, Vehiculo vehiculo) {
         this.codigo = codigo;
         this.kilometros = kilometros;
         this.costo = costo;
@@ -54,7 +57,12 @@ public class Traslado {
         this.solicitudtraslado = solicitudtraslado;
         this.cantidadresiduo = cantidadresiduo;
         this.empresatransportista = empresatransportista;
+        this.vehiculo = vehiculo;
     }
+
+    
+    
+    
 
     public ObjectId getId() {
         return id;
@@ -128,4 +136,15 @@ public class Traslado {
         this.empresatransportista = empresatransportista;
     }
 
+    public Vehiculo getVehiculo() {
+        return vehiculo;
+    }
+
+    public void setVehiculo(Vehiculo vehiculo) {
+        this.vehiculo = vehiculo;
+    }
+
+    
+    
+    
 }

@@ -35,11 +35,11 @@ public class SolicitudTrasladoDAO extends ISolicitudTrasladoDAO {
     }
 
     @Override
-    public void marcarAsignado(SolicitudTraslado solicitudtraslado) throws DAOException {
+    public void marcarAsignado(String codigo) throws DAOException {
         MongoCollection<SolicitudTraslado> coleccionST = this.getCollection();
 
         // Crea un filtro para encontrar la solicitud de traslado por su identificador
-        Bson filtro = Filters.eq("codigo", solicitudtraslado.getCodigo());
+        Bson filtro = Filters.eq("codigo", codigo);
 
         // Crea un objeto de actualización para marcar el atributo "asignado" como true
         Bson actualizacion = Updates.set("asignado", true);

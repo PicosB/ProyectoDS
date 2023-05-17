@@ -8,12 +8,16 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import daos.IResiduoDAO;
+import daos.ISolicitudTrasladoDAO;
 import daos.ResiduoDAO;
+import daos.SolicitudTrasladoDAO;
+import entidades.Destino;
 import entidades.Residuo;
+import entidades.SolicitudTraslado;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
-
 
 /**
  *
@@ -22,7 +26,7 @@ import javax.swing.JOptionPane;
 public class SolicitarTraslado extends javax.swing.JFrame {
 
     IResiduoDAO residuoDAO = new ResiduoDAO();
-
+    ISolicitudTrasladoDAO solicitudTrasladoDAO = new SolicitudTrasladoDAO();
     /**
      * Creates new form SolicitarTraslado
      */
@@ -33,15 +37,42 @@ public class SolicitarTraslado extends javax.swing.JFrame {
 
         listResiduosDisponibles.setModel(modelDisponibles);
         listResiduosSeleccionados.setModel(modelSeleccionados);
-        
+
         //Se guardan los residuos en un arrayList 
-        ArrayList residuos = obtenerResiduos();
-      
-        for (int i = 0; i<residuos.size(); i++){
+        ArrayList residuos = obtenerResiduosExistentes();
+
+        for (int i = 0; i < residuos.size(); i++) {
             modelDisponibles.addElement(residuos.get(i).toString());
         }
-        
 
+    }
+
+    public void guardarSolicitudTraslado() {
+
+        LocalDate fechaSeleccionada = this.trasladoDatePicker.getSelectedDate();
+        Residuo residuoTraslado = new Residuo();  
+        float cantidadResiduo = Float.valueOf(this.txtCantidad.getText());
+        boolean asingado = false;
+        Destino destino = new Destino(this.destinoTxt.getText());
+        
+        try{
+        residuoTraslado =this.residuoDAO.verificaExistenciaPorNombre(obtenerResiduosSeleccionados()); 
+        
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Ocurrió un error al recuperar residuos");
+        }
+        
+       
+        
+        try{
+        SolicitudTraslado solicitudTraslado = new SolicitudTraslado(null, residuoTraslado, fechaSeleccionada, cantidadResiduo, asingado, destino, null);
+        solicitudTrasladoDAO.guardar(solicitudTraslado);
+         JOptionPane.showMessageDialog(null, "Se guardó exitosamente su solicitud");
+        
+        }catch(Exception e){
+           
+        }
+       
     }
 
     /*
@@ -74,10 +105,10 @@ public class SolicitarTraslado extends javax.swing.JFrame {
         modelQuimicosSeleccionados.removeElement(selectedValue);
     }
 
-    public ArrayList<Residuo>obtenerResiduos() {
+    public ArrayList<Residuo> obtenerResiduosExistentes() {
 
         MongoCollection<Residuo> collection = residuoDAO.getCollection();
-        
+
         // Crear un nuevo ArrayList
         ArrayList<Residuo> arrayList = new ArrayList<>();
 
@@ -89,12 +120,32 @@ public class SolicitarTraslado extends javax.swing.JFrame {
         while (cursor.hasNext()) {
             Residuo residuo = cursor.next();
             arrayList.add(residuo);
-            
+
         }
         return arrayList;
-        
-        
 
+    }
+
+    public String obtenerResiduosSeleccionados() {
+
+        DefaultListModel <String> modelSelected = (DefaultListModel<String>) this.listResiduosSeleccionados.getModel();
+     
+        String residuo = modelSelected.getElementAt(0).toString();
+       
+        return residuo;
+        
+        /*
+        ArrayList arraylist = new ArrayList();
+        
+       
+        for (int i = 0; i < modelSelected.getSize(); i++) {
+            arraylist.add(modelSelected.getElementAt(i));
+           System.out.println(modelSelected.get(0).toString());
+            
+        }
+       
+        return arraylist.get(0).toString();
+*/
     }
 
     /**
@@ -198,7 +249,7 @@ public class SolicitarTraslado extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(33, 33, 33)
                                 .addComponent(jLabel3)
-                                .addGap(45, 45, 45)
+                                .addGap(83, 83, 83)
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -240,12 +291,13 @@ public class SolicitarTraslado extends javax.swing.JFrame {
                         .addGap(24, 24, 24)
                         .addComponent(trasladoDatePicker, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)))
+                        .addComponent(jLabel4))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(112, 112, 112)
-                        .addComponent(seleccionarFecha)))
+                        .addComponent(seleccionarFecha))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(247, 247, 247)
+                        .addComponent(jLabel3)))
                 .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -271,7 +323,7 @@ public class SolicitarTraslado extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -299,7 +351,17 @@ public class SolicitarTraslado extends javax.swing.JFrame {
 
     private void btnSolicitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitarActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, "Su solicitud fue registrada con éxito");
+        System.out.println();
+        try {
+        
+            guardarSolicitudTraslado();
+          
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+
     }//GEN-LAST:event_btnSolicitarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed

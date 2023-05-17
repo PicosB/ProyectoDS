@@ -305,7 +305,8 @@ public class RegistrarResiduo extends javax.swing.JFrame {
 
     private void cancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBtnActionPerformed
         // TODO add your handling code here:
-        dispose();
+       new PantallaPrincipal().setVisible(true);
+       this.setVisible(false);
     }//GEN-LAST:event_cancelarBtnActionPerformed
 
     /**

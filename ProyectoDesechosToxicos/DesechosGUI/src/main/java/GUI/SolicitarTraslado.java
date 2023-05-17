@@ -10,7 +10,6 @@ import com.mongodb.client.MongoCursor;
 import daos.IResiduoDAO;
 import daos.ResiduoDAO;
 import entidades.Residuo;
-import java.awt.List;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -83,6 +82,8 @@ public class SolicitarTraslado extends javax.swing.JFrame {
         ArrayList<Document> arrayList = new ArrayList<>();
 
         // Obtener un cursor de los documentos de la colección
+        
+        residuoDAO.getCollection(); 
         FindIterable<Document> documents = collection.find();
         MongoCursor<Document> cursor = documents.iterator();
 

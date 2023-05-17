@@ -4,18 +4,21 @@
  */
 package GUI;
 
+import daos.IResiduoDAO;
+import daos.ResiduoDAO;
 import entidades.ConstituyenteQuimico;
 import entidades.Residuo;
+import java.awt.List;
+import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
-
 
 /**
  *
  * @author luis
  */
 public class RegistrarResiduo extends javax.swing.JFrame {
-
+    IResiduoDAO residuoDAO = new ResiduoDAO();
     /**
      * Creates new form RegistrarResiduo
      */
@@ -31,6 +34,30 @@ public class RegistrarResiduo extends javax.swing.JFrame {
         modelQuimicos.addElement("Plomo");
         modelQuimicos.addElement("Cloro");
 
+    }
+
+    private void registrar() {
+        String codigo = txtCodigo.getText();
+        String nombre = txtNombre.getText();
+        ConstituyenteQuimico constituyenteQuimicoPrimario = new ConstituyenteQuimico();
+        ConstituyenteQuimico constituyenteQuimicoSecundario = new ConstituyenteQuimico();
+
+        Residuo residuo = new Residuo(codigo, nombre, null, null, null);
+
+        DefaultListModel<String> modelR = (DefaultListModel<String>) residuosList.getModel();
+        ArrayList<String> arrayList = new ArrayList<>();
+        for (int i = 0; i < modelR.getSize() - 1; i++) {
+            String element = modelR.getElementAt(i);
+            arrayList.add(element);
+            constituyenteQuimicoPrimario.setNombre(modelR.getElementAt(i));
+            constituyenteQuimicoSecundario.setNombre(modelR.getElementAt(i + 1));
+        }
+
+        try{
+           residuoDAO.guardar(residuo);
+        }catch(Exception e ){
+            JOptionPane.showMessageDialog(null, "Ocurrió un error al momento de registrar");
+        }
     }
 
     /**
@@ -246,17 +273,10 @@ public class RegistrarResiduo extends javax.swing.JFrame {
 
     private void registrarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarBtnActionPerformed
         // TODO add your handling code here:
-       
-        ConstituyenteQuimico constituyenteQuimico = new ConstituyenteQuimico(quimicoslist.getSelectedValue());
-        String codigo = txtCodigo.getText();
-        String nombre = txtNombre.getText();
 
-        Residuo res = new Residuo(codigo, nombre, constituyenteQuimico, null);
+        registrar();
 
-        JOptionPane.showMessageDialog(null, codigo);
-        JOptionPane.showMessageDialog(null, nombre);
-        JOptionPane.showMessageDialog(null, constituyenteQuimico);
-        
+
     }//GEN-LAST:event_registrarBtnActionPerformed
 
     private void cancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBtnActionPerformed

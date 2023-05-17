@@ -4,16 +4,25 @@
  */
 package GUI;
 
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
+import daos.IResiduoDAO;
+import daos.ResiduoDAO;
 import entidades.Residuo;
+import java.awt.List;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.text.Document;
 
 /**
  *
  * @author luis
  */
 public class SolicitarTraslado extends javax.swing.JFrame {
+
+    IResiduoDAO residuoDAO = new ResiduoDAO();
 
     /**
      * Creates new form SolicitarTraslado
@@ -22,13 +31,17 @@ public class SolicitarTraslado extends javax.swing.JFrame {
         initComponents();
         DefaultListModel<String> modelDisponibles = new DefaultListModel<String>();
         DefaultListModel<String> modelSeleccionados = new DefaultListModel<String>();
-        
-           listResiduosDisponibles.setModel(modelDisponibles);
+
+        listResiduosDisponibles.setModel(modelDisponibles);
         listResiduosSeleccionados.setModel(modelSeleccionados);
-        modelDisponibles.addElement("Chatarra");
-        modelDisponibles.addElement("Hojalata");
-        modelDisponibles.addElement("Heces");
-        modelDisponibles.addElement("Fecal");
+        
+        //Se guardan los residuos en un arrayList 
+        ArrayList residuos = obtenerResiduos();
+      
+        for (int i = 0; i<residuos.size(); i++){
+            modelDisponibles.addElement(residuos.get(i).toString());
+        }
+        
 
     }
 
@@ -39,8 +52,8 @@ public class SolicitarTraslado extends javax.swing.JFrame {
         return null;
     }
 
-    public void seleccionarQuimico() {
-        
+    private void seleccionarQuimico() {
+
         this.listResiduosDisponibles.remove(this);
         DefaultListModel<String> modelQ = (DefaultListModel<String>) listResiduosDisponibles.getModel();
         DefaultListModel<String> modelR = (DefaultListModel<String>) listResiduosSeleccionados.getModel();
@@ -49,9 +62,10 @@ public class SolicitarTraslado extends javax.swing.JFrame {
         listResiduosSeleccionados.repaint();
         modelR.addElement(selectedValue);
     }
-      public void eliminarQuimico() {
-        
-     DefaultListModel<String> modelQuimicosDisponibles = (DefaultListModel<String>) listResiduosDisponibles.getModel();
+
+    private void eliminarQuimico() {
+
+        DefaultListModel<String> modelQuimicosDisponibles = (DefaultListModel<String>) listResiduosDisponibles.getModel();
         DefaultListModel<String> modelQuimicosSeleccionados = (DefaultListModel<String>) listResiduosSeleccionados.getModel();
 
         String selectedValue = listResiduosSeleccionados.getSelectedValue();
@@ -60,6 +74,30 @@ public class SolicitarTraslado extends javax.swing.JFrame {
 
         modelQuimicosSeleccionados.removeElement(selectedValue);
     }
+
+    public ArrayList obtenerResiduos() {
+
+        MongoCollection collection = residuoDAO.getCollection();
+
+        // Crear un nuevo ArrayList
+        ArrayList<Document> arrayList = new ArrayList<>();
+
+        // Obtener un cursor de los documentos de la colección
+        FindIterable<Document> documents = collection.find();
+        MongoCursor<Document> cursor = documents.iterator();
+
+        // Recorrer el cursor y agregar los documentos al ArrayList
+        while (cursor.hasNext()) {
+            Document document = cursor.next();
+            arrayList.add(document);
+            
+        }
+        return arrayList;
+        
+        
+
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

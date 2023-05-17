@@ -20,13 +20,13 @@ public class SolicitudTraslado {
     private float cantidadresiduo;
     private boolean asignado;
     private Destino destino;
-
+    private EmpresaTransportista empresatransportista;
   
     
     public SolicitudTraslado() {
     }
 
-    public SolicitudTraslado(ObjectId id, String codigo, Residuo residuo, Date fechasolicitud, float cantidadresiduo, boolean asignado, Destino destino) {
+    public SolicitudTraslado(ObjectId id, String codigo, Residuo residuo, Date fechasolicitud, float cantidadresiduo, boolean asignado, Destino destino, EmpresaTransportista empresatransportista) {
         this.id = id;
         this.codigo = codigo;
         this.residuo = residuo;
@@ -34,20 +34,22 @@ public class SolicitudTraslado {
         this.cantidadresiduo = cantidadresiduo;
         this.asignado = asignado;
         this.destino = destino;
+        this.empresatransportista = empresatransportista;
     }
 
-    public SolicitudTraslado(String codigo, Residuo residuo, Date fechasolicitud, float cantidadresiduo, boolean asignado, Destino destino) {
+    public SolicitudTraslado(String codigo, Residuo residuo, Date fechasolicitud, float cantidadresiduo, boolean asignado, Destino destino, EmpresaTransportista empresatransportista) {
         this.codigo = codigo;
         this.residuo = residuo;
         this.fechasolicitud = fechasolicitud;
         this.cantidadresiduo = cantidadresiduo;
         this.asignado = asignado;
         this.destino = destino;
+        this.empresatransportista = empresatransportista;
     }
 
     
 
-    
+   
     public ObjectId getId() {
         return id;
     }
@@ -104,9 +106,15 @@ public class SolicitudTraslado {
         this.destino = destino;
     }
 
+    public EmpresaTransportista getEmpresatransportista() {
+        return empresatransportista;
+    }
+
+    public void setEmpresatransportista(EmpresaTransportista empresatransportista) {
+        this.empresatransportista = empresatransportista;
+    }
+
    
-    
-    
     
     
     

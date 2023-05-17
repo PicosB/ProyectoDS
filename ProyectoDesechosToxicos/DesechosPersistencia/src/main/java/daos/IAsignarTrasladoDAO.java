@@ -9,7 +9,6 @@ import com.mongodb.MongoClientOptions;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import entidades.Traslado;
-import entidades.Vehiculo;
 import exceptions.DAOException;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
@@ -37,9 +36,7 @@ public abstract class IAsignarTrasladoDAO {
     
     
     public abstract void guardar(Traslado traslado) throws DAOException;
-
-    public abstract void agregarVehiculo(String codigo, Vehiculo vehiculo) throws DAOException;
-           
+    
     public abstract Traslado verificaExistencia(String codigo) throws DAOException;
 
     public abstract MongoCollection<Traslado> getCollection();

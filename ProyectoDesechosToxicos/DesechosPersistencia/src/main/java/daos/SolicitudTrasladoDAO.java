@@ -33,7 +33,15 @@ public class SolicitudTrasladoDAO extends ISolicitudTrasladoDAO {
 
         return solicitudEncontrada;
     }
+    
+     @Override
+    public SolicitudTraslado obtienePorNombre(String nombre) throws DAOException {
+        MongoCollection<SolicitudTraslado> coleccionST = this.getCollection();
 
+        SolicitudTraslado solicitudEncontrada = coleccionST.find(Filters.eq("nombre", nombre)).first();
+
+        return solicitudEncontrada;
+    }
     @Override
     public void marcarAsignado(String codigo) throws DAOException {
         MongoCollection<SolicitudTraslado> coleccionST = this.getCollection();

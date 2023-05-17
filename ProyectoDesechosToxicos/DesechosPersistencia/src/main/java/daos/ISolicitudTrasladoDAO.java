@@ -40,6 +40,8 @@ public abstract class ISolicitudTrasladoDAO {
    
     public abstract SolicitudTraslado verificaExistencia(String codigo) throws DAOException;
     
+      public abstract SolicitudTraslado obtienePorNombre(String nombre) throws DAOException;
+    
     public abstract MongoCollection<SolicitudTraslado> getCollection();
     
     

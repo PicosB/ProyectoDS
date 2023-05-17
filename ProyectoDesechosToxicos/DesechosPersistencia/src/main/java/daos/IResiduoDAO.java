@@ -39,6 +39,7 @@ public abstract class IResiduoDAO {
    
     public abstract Residuo verificaExistencia(String codigo) throws DAOException;
 
+       public abstract Residuo verificaExistenciaPorNombre(String nombre) throws DAOException;
     public abstract MongoCollection<Residuo> getCollection();
     
 }

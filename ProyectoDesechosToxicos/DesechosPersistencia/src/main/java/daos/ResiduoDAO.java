@@ -28,7 +28,16 @@ public class ResiduoDAO extends IResiduoDAO {
 
         Residuo residuoEncontrado = coleccionR.find(Filters.eq("codigo", codigo)).first();
 
-       return residuoEncontrado;
+        return residuoEncontrado;
+    }
+
+    @Override
+    public Residuo verificaExistenciaPorNombre(String nombre) throws DAOException {
+        MongoCollection<Residuo> coleccionR = this.getCollection();
+
+        Residuo residuoEncontrado = coleccionR.find(Filters.eq("nombre", nombre)).first();
+
+        return residuoEncontrado;
     }
 
     @Override

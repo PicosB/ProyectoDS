@@ -4,6 +4,7 @@
  */
 package entidades;
 
+import java.time.LocalDate;
 import java.util.Date;
 import org.bson.types.ObjectId;
 
@@ -16,7 +17,7 @@ public class SolicitudTraslado {
     private ObjectId id;
     private String codigo;
     private Residuo residuo;
-    private Date fechasolicitud;
+    private LocalDate fechasolicitud;
     private float cantidadresiduo;
     private boolean asignado;
     private Destino destino;
@@ -26,7 +27,7 @@ public class SolicitudTraslado {
     public SolicitudTraslado() {
     }
 
-    public SolicitudTraslado(ObjectId id, String codigo, Residuo residuo, Date fechasolicitud, float cantidadresiduo, boolean asignado, Destino destino, EmpresaTransportista empresatransportista) {
+    public SolicitudTraslado(ObjectId id, String codigo, Residuo residuo, LocalDate fechasolicitud, float cantidadresiduo, boolean asignado, Destino destino, EmpresaTransportista empresatransportista) {
         this.id = id;
         this.codigo = codigo;
         this.residuo = residuo;
@@ -37,7 +38,7 @@ public class SolicitudTraslado {
         this.empresatransportista = empresatransportista;
     }
 
-    public SolicitudTraslado(String codigo, Residuo residuo, Date fechasolicitud, float cantidadresiduo, boolean asignado, Destino destino, EmpresaTransportista empresatransportista) {
+    public SolicitudTraslado(String codigo, Residuo residuo, LocalDate fechasolicitud, float cantidadresiduo, boolean asignado, Destino destino, EmpresaTransportista empresatransportista) {
         this.codigo = codigo;
         this.residuo = residuo;
         this.fechasolicitud = fechasolicitud;
@@ -74,11 +75,11 @@ public class SolicitudTraslado {
         this.residuo = residuo;
     }
 
-    public Date getFechasolicitud() {
+    public LocalDate getFechasolicitud() {
         return fechasolicitud;
     }
 
-    public void setFechasolicitud(Date fechasolicitud) {
+    public void setFechasolicitud(LocalDate fechasolicitud) {
         this.fechasolicitud = fechasolicitud;
     }
 

@@ -75,21 +75,21 @@ public class SolicitarTraslado extends javax.swing.JFrame {
         modelQuimicosSeleccionados.removeElement(selectedValue);
     }
 
-    public ArrayList obtenerResiduos() {
+    public ArrayList<Residuo>obtenerResiduos() {
 
-        MongoCollection collection = residuoDAO.getCollection();
-
+        MongoCollection<Residuo> collection = residuoDAO.getCollection();
+        
         // Crear un nuevo ArrayList
-        ArrayList<Document> arrayList = new ArrayList<>();
+        ArrayList<Residuo> arrayList = new ArrayList<>();
 
         // Obtener un cursor de los documentos de la colección
-        FindIterable<Document> documents = collection.find();
-        MongoCursor<Document> cursor = documents.iterator();
+        FindIterable<Residuo> documents = collection.find();
+        MongoCursor<Residuo> cursor = documents.iterator();
 
         // Recorrer el cursor y agregar los documentos al ArrayList
         while (cursor.hasNext()) {
-            Document document = cursor.next();
-            arrayList.add(document);
+            Residuo residuo = cursor.next();
+            arrayList.add(residuo);
             
         }
         return arrayList;

@@ -4,6 +4,9 @@
  */
 package GUI;
 
+import Fabrica.FabricaDatos;
+import Fabrica.IFabricaDatos;
+
 /**
  *
  * @author luis
@@ -119,8 +122,9 @@ private static PantallaPrincipal instancia;
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarResiduoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarResiduoActionPerformed
-        // TODO add your handling code here:
-        new RegistrarResiduo().setVisible(true);
+    IFabricaDatos fabricaResiduo = new FabricaDatos();
+    RegistrarResiduo rr = new RegistrarResiduo(fabricaResiduo);
+        rr.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnRegistrarResiduoActionPerformed
 

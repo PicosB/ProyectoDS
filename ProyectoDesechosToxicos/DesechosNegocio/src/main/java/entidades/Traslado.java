@@ -26,14 +26,14 @@ public class Traslado {
     
     private SolicitudTraslado solicitudtraslado;
     
-    private ArrayList<Float> cantidadresiduo;
+    private float cantidadresiduo;
     
     private Vehiculo vehiculo;
     
     public Traslado() {
     }
 
-    public Traslado(ObjectId id, String codigo, float kilometros, float costo, Date fechaLlegada, String tratamiento, SolicitudTraslado solicitudtraslado, ArrayList<Float> cantidadresiduo, Vehiculo vehiculo) {
+    public Traslado(ObjectId id, String codigo, float kilometros, float costo, Date fechaLlegada, String tratamiento, SolicitudTraslado solicitudtraslado,float cantidadresiduo, Vehiculo vehiculo) {
         this.id = id;
         this.codigo = codigo;
         this.kilometros = kilometros;
@@ -45,7 +45,7 @@ public class Traslado {
         this.vehiculo = vehiculo;
     }
 
-    public Traslado(String codigo, float kilometros, float costo, Date fechaLlegada, String tratamiento, SolicitudTraslado solicitudtraslado, ArrayList<Float> cantidadresiduo, Vehiculo vehiculo) {
+    public Traslado(String codigo, float kilometros, float costo, Date fechaLlegada, String tratamiento, SolicitudTraslado solicitudtraslado, float cantidadresiduo, Vehiculo vehiculo) {
         this.codigo = codigo;
         this.kilometros = kilometros;
         this.costo = costo;
@@ -116,11 +116,11 @@ public class Traslado {
         this.solicitudtraslado = solicitudtraslado;
     }
 
-    public ArrayList<Float> getCantidadresiduo() {
+    public float getCantidadresiduo() {
         return cantidadresiduo;
     }
 
-    public void setCantidadresiduo(ArrayList<Float> cantidadresiduo) {
+    public void setCantidadresiduo(float cantidadresiduo) {
         this.cantidadresiduo = cantidadresiduo;
     }
 

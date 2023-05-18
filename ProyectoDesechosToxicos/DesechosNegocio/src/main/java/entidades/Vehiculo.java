@@ -15,14 +15,19 @@ public class Vehiculo {
     private ObjectId id;
     
     private String tipo;
-    
+    // Avion, Automóvil, Camión, Barco
     private EmpresaTransportista empresatransportista;
-
+    
     public Vehiculo() {
     }
 
     public Vehiculo(ObjectId id, String tipo, EmpresaTransportista empresatransportista) {
         this.id = id;
+        this.tipo = tipo;
+        this.empresatransportista = empresatransportista;
+    }
+     public Vehiculo( String tipo, EmpresaTransportista empresatransportista) {
+
         this.tipo = tipo;
         this.empresatransportista = empresatransportista;
     }
@@ -51,11 +56,16 @@ public class Vehiculo {
         this.empresatransportista = empresatransportista;
     }
 
+    @Override
+    public String toString() {
+        return "Tipo: "+ tipo +", Empresa: "+empresatransportista.getNombre();
+    }
+
     
     
     
     
-    
+   
     
     
     

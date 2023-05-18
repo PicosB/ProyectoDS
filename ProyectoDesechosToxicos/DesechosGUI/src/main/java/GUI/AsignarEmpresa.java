@@ -278,9 +278,12 @@ public class AsignarEmpresa extends javax.swing.JFrame {
             this.solicitudFachada.asignarEmpresaTransportistaSolicitudTraslado(this.txtCodigo.getText(), empresaTransportista);
             JOptionPane.showMessageDialog(null, "Se asignó correctamente la empresa.");
           */
-           SolicitudTraslado solicitud = this.solicitudTrasladoDAO.verificaExistencia(this.txtCodigo.getText());
-           solicitud.setEmpresatransportista(empresaTransportista);
-           
+          this.solicitudTrasladoDAO.verificaExistencia(this.txtCodigo.getText().trim()).setEmpresatransportista(empresaTransportista);
+            
+          this.solicitudTrasladoDAO.asignarEmpresaTransportista(this.txtCodigo.getText(), empresaTransportista);
+                
+           JOptionPane.showMessageDialog(null, "Se asignó correctamente la empresa.");
+                System.out.println("c");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ocurrió un error en la asignación de la empresa, intente de nuevo.");
         }

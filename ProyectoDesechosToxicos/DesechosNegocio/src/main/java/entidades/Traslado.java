@@ -4,7 +4,7 @@
  */
 package entidades;
 
-import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.Date;
 import org.bson.types.ObjectId;
 
@@ -20,7 +20,7 @@ public class Traslado {
     
     private float kilometros, costo;
     
-    private Date fechaLlegada;
+    private LocalDate fechaLlegada;
     
     private String tratamiento;
     
@@ -33,7 +33,7 @@ public class Traslado {
     public Traslado() {
     }
 
-    public Traslado(ObjectId id, String codigo, float kilometros, float costo, Date fechaLlegada, String tratamiento, SolicitudTraslado solicitudtraslado,float cantidadresiduo, Vehiculo vehiculo) {
+    public Traslado(ObjectId id, String codigo, float kilometros, float costo, LocalDate fechaLlegada, String tratamiento, SolicitudTraslado solicitudtraslado,float cantidadresiduo, Vehiculo vehiculo) {
         this.id = id;
         this.codigo = codigo;
         this.kilometros = kilometros;
@@ -45,7 +45,7 @@ public class Traslado {
         this.vehiculo = vehiculo;
     }
 
-    public Traslado(String codigo, float kilometros, float costo, Date fechaLlegada, String tratamiento, SolicitudTraslado solicitudtraslado, float cantidadresiduo, Vehiculo vehiculo) {
+    public Traslado(String codigo, float kilometros, float costo, LocalDate fechaLlegada, String tratamiento, SolicitudTraslado solicitudtraslado, float cantidadresiduo, Vehiculo vehiculo) {
         this.codigo = codigo;
         this.kilometros = kilometros;
         this.costo = costo;
@@ -92,11 +92,11 @@ public class Traslado {
         this.costo = costo;
     }
 
-    public Date getFechaLlegada() {
+    public LocalDate getFechaLlegada() {
         return fechaLlegada;
     }
 
-    public void setFechaLlegada(Date fechaLlegada) {
+    public void setFechaLlegada(LocalDate fechaLlegada) {
         this.fechaLlegada = fechaLlegada;
     }
 

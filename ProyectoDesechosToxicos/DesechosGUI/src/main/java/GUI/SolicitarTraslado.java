@@ -27,6 +27,7 @@ public class SolicitarTraslado extends javax.swing.JFrame {
 
     IResiduoDAO residuoDAO = new ResiduoDAO();
     ISolicitudTrasladoDAO solicitudTrasladoDAO = new SolicitudTrasladoDAO();
+
     /**
      * Creates new form SolicitarTraslado
      */
@@ -50,29 +51,30 @@ public class SolicitarTraslado extends javax.swing.JFrame {
     public void guardarSolicitudTraslado() {
 
         LocalDate fechaSeleccionada = this.trasladoDatePicker.getSelectedDate();
-        Residuo residuoTraslado = new Residuo();  
+        //Residuo residuoTraslado = new Residuo();
         float cantidadResiduo = Float.valueOf(this.txtCantidad.getText());
         boolean asingado = false;
         Destino destino = new Destino(this.destinoTxt.getText());
-        
-        try{
-        residuoTraslado =this.residuoDAO.verificaExistenciaPorNombre(obtenerResiduosSeleccionados()); 
-        
-        }catch(Exception e){
+        SolicitudTraslado solicitudTraslado = null;
+        try {
+
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ocurrió un error al recuperar residuos");
         }
-        
-       
-        
-        try{
-        SolicitudTraslado solicitudTraslado = new SolicitudTraslado(null, residuoTraslado, fechaSeleccionada, cantidadResiduo, asingado, destino, null);
-        solicitudTrasladoDAO.guardar(solicitudTraslado);
-         JOptionPane.showMessageDialog(null, "Se guardó exitosamente su solicitud");
-        
-        }catch(Exception e){
-           
+
+        try {
+            solicitudTraslado = new SolicitudTraslado(obtenerResiduosSeleccionados(), fechaSeleccionada, cantidadResiduo, asingado, destino, null);
+            solicitudTrasladoDAO.guardar(solicitudTraslado);
+            JOptionPane.showMessageDialog(null, "Se guardó exitosamente su solicitud");
+
+        } catch (Exception e) {
+
         }
-       
+
+        for (int i= 0; i < obtenerResiduosSeleccionados().size(); i++) {
+            JOptionPane.showMessageDialog(null, solicitudTraslado.getResiduo().get(i).getNombre());
+        }
+
     }
 
     /*
@@ -126,26 +128,19 @@ public class SolicitarTraslado extends javax.swing.JFrame {
 
     }
 
-    public String obtenerResiduosSeleccionados() {
+    public ArrayList<Residuo> obtenerResiduosSeleccionados() {
 
-        DefaultListModel <String> modelSelected = (DefaultListModel<String>) this.listResiduosSeleccionados.getModel();
-     
-        String residuo = modelSelected.getElementAt(0).toString();
-       
-        return residuo;
-        
-        /*
-        ArrayList arraylist = new ArrayList();
-        
-       
+        DefaultListModel<String> modelSelected = (DefaultListModel<String>) this.listResiduosSeleccionados.getModel();
+        ArrayList<Residuo> residuos = new ArrayList<>();
         for (int i = 0; i < modelSelected.getSize(); i++) {
-            arraylist.add(modelSelected.getElementAt(i));
-           System.out.println(modelSelected.get(0).toString());
-            
+            try {
+                residuos.add(this.residuoDAO.verificaExistenciaPorNombre(modelSelected.get(i)));
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Ocurrió un error obteniendo los residuos del sistema.");
+            }
+
         }
-       
-        return arraylist.get(0).toString();
-*/
+        return residuos;
     }
 
     /**
@@ -351,11 +346,10 @@ public class SolicitarTraslado extends javax.swing.JFrame {
 
     private void btnSolicitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitarActionPerformed
         // TODO add your handling code here:
-        System.out.println();
+
         try {
-        
+
             guardarSolicitudTraslado();
-          
 
         } catch (Exception e) {
             System.out.println(e);

@@ -5,7 +5,7 @@
 package entidades;
 
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.List;
 import org.bson.types.ObjectId;
 
 /**
@@ -16,7 +16,7 @@ public class SolicitudTraslado {
     
     private ObjectId id;
     private String codigo;
-    private Residuo residuo;
+    private List<Residuo> residuo;
     private LocalDate fechasolicitud;
     private float cantidadresiduo;
     private boolean asignado;
@@ -27,7 +27,7 @@ public class SolicitudTraslado {
     public SolicitudTraslado() {
     }
 
-    public SolicitudTraslado(ObjectId id, String codigo, Residuo residuo, LocalDate fechasolicitud, float cantidadresiduo, boolean asignado, Destino destino, EmpresaTransportista empresatransportista) {
+    public SolicitudTraslado(ObjectId id, String codigo, List<Residuo> residuo, LocalDate fechasolicitud, float cantidadresiduo, boolean asignado, Destino destino, EmpresaTransportista empresatransportista) {
         this.id = id;
         this.codigo = codigo;
         this.residuo = residuo;
@@ -38,7 +38,7 @@ public class SolicitudTraslado {
         this.empresatransportista = empresatransportista;
     }
 
-    public SolicitudTraslado(String codigo, Residuo residuo, LocalDate fechasolicitud, float cantidadresiduo, boolean asignado, Destino destino, EmpresaTransportista empresatransportista) {
+    public SolicitudTraslado(String codigo, List<Residuo> residuo, LocalDate fechasolicitud, float cantidadresiduo, boolean asignado, Destino destino, EmpresaTransportista empresatransportista) {
         this.codigo = codigo;
         this.residuo = residuo;
         this.fechasolicitud = fechasolicitud;
@@ -48,7 +48,16 @@ public class SolicitudTraslado {
         this.empresatransportista = empresatransportista;
     }
 
-    
+     public SolicitudTraslado( List<Residuo> residuo, LocalDate fechasolicitud, float cantidadresiduo, boolean asignado, Destino destino, EmpresaTransportista empresatransportista) {
+
+        this.residuo = residuo;
+        this.fechasolicitud = fechasolicitud;
+        this.cantidadresiduo = cantidadresiduo;
+        this.asignado = asignado;
+        this.destino = destino;
+        this.empresatransportista = empresatransportista;
+    }
+
 
    
     public ObjectId getId() {
@@ -67,11 +76,11 @@ public class SolicitudTraslado {
         this.codigo = codigo;
     }
 
-    public Residuo getResiduo() {
+    public List<Residuo> getResiduo() {
         return residuo;
     }
 
-    public void setResiduo(Residuo residuo) {
+    public void setResiduo(List<Residuo> residuo) {
         this.residuo = residuo;
     }
 

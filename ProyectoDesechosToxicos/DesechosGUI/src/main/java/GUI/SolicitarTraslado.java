@@ -54,7 +54,8 @@ public class SolicitarTraslado extends javax.swing.JFrame {
         //Residuo residuoTraslado = new Residuo();
         float cantidadResiduo = Float.valueOf(this.txtCantidad.getText());
         boolean asingado = false;
-        Destino destino = new Destino(this.destinoTxt.getText());
+        Destino destino = new Destino(this.cbDestino.getSelectedItem().toString());
+        String codigo  = this.codigoTxt.getText();
         SolicitudTraslado solicitudTraslado = null;
         try {
 
@@ -63,7 +64,7 @@ public class SolicitarTraslado extends javax.swing.JFrame {
         }
 
         try {
-            solicitudTraslado = new SolicitudTraslado(obtenerResiduosSeleccionados(), fechaSeleccionada, cantidadResiduo, asingado, destino, null);
+            solicitudTraslado = new SolicitudTraslado(codigo, obtenerResiduosSeleccionados(), fechaSeleccionada, cantidadResiduo, asingado, destino, null);
             solicitudTrasladoDAO.guardar(solicitudTraslado);
             JOptionPane.showMessageDialog(null, "Se guardó exitosamente su solicitud");
 
@@ -71,18 +72,11 @@ public class SolicitarTraslado extends javax.swing.JFrame {
 
         }
 
-        for (int i= 0; i < obtenerResiduosSeleccionados().size(); i++) {
-            JOptionPane.showMessageDialog(null, solicitudTraslado.getResiduo().get(i).getNombre());
-        }
+       
 
     }
 
-    /*
-    Aquí debemos agregar el método de persistencia (DAO) que nos permite traer los residuos registrados
-     */
-    public ArrayList<Residuo> obtieneResiduosRegistrados() {
-        return null;
-    }
+  
 
     private void seleccionarQuimico() {
 
@@ -170,7 +164,9 @@ public class SolicitarTraslado extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txtCantidad = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        destinoTxt = new javax.swing.JTextField();
+        cbDestino = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
+        codigoTxt = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -224,6 +220,10 @@ public class SolicitarTraslado extends javax.swing.JFrame {
 
         jLabel6.setText("Destino");
 
+        cbDestino.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "Chiapas", "Chihuahua", "Coahuila de Zaragoza", "Colima", "Ciudad de México", "Durango", "Guanajuato", "Guerrero", "Hidalgo", "Jalisco", "Mexico", "Michoacan", "Morelos", "Nayarit", "Nuevo Leon", "Oaxaca", "Puebla", "Queretaro de Arteaga", "Quintana Roo", "San Luis Potosi", "Sinaloa", "Sonora", "Tabasco", "Tamaulipas", "Tlaxcala", "Veracruz", "Yucatan", "Zacatecas" }));
+
+        jLabel7.setText("Código");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -253,17 +253,7 @@ public class SolicitarTraslado extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton2))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6))
-                                .addGap(32, 32, 32)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtCantidad)
-                                    .addComponent(destinoTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE))
-                                .addGap(68, 68, 68))))
+                                .addComponent(jButton2))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(193, 193, 193)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -273,6 +263,18 @@ public class SolicitarTraslado extends javax.swing.JFrame {
                         .addGap(75, 75, 75)
                         .addComponent(btnCancelar)))
                 .addContainerGap(20, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7))
+                .addGap(32, 32, 32)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtCantidad)
+                    .addComponent(cbDestino, 0, 299, Short.MAX_VALUE)
+                    .addComponent(codigoTxt))
+                .addGap(93, 93, 93))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -299,15 +301,19 @@ public class SolicitarTraslado extends javax.swing.JFrame {
                     .addComponent(seleccionarBtn)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2))
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(codigoTxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(destinoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                    .addComponent(cbDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSolicitar)
                     .addComponent(btnCancelar))
@@ -403,7 +409,8 @@ public class SolicitarTraslado extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnSolicitar;
-    private javax.swing.JTextField destinoTxt;
+    private javax.swing.JComboBox<String> cbDestino;
+    private javax.swing.JTextField codigoTxt;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -411,6 +418,7 @@ public class SolicitarTraslado extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

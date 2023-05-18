@@ -25,7 +25,7 @@ public class RegistrarResiduo extends javax.swing.JFrame {
     public RegistrarResiduo() {
         initComponents();
         DefaultListModel<String> modelQuimicos = new DefaultListModel<String>();
-        DefaultListModel<String> modelResiduos = new DefaultListModel<String>();
+        DefaultListModel<String > modelResiduos = new DefaultListModel<String>();
         quimicoslist.setModel(modelQuimicos);
         residuosList.setModel(modelResiduos);
 
@@ -164,7 +164,7 @@ public class RegistrarResiduo extends javax.swing.JFrame {
             }
         });
 
-        cbEmpresa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Intel", "Chalet", "La Palmera", " " }));
+        cbEmpresa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Intel", "Chalet", "La Palmera", "Office Depot", "Moe's", "ITSON", " " }));
 
         jLabel4.setText("Seleccione empresa");
 

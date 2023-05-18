@@ -9,6 +9,7 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
 import com.mongodb.client.result.UpdateResult;
+import entidades.EmpresaTransportista;
 import entidades.SolicitudTraslado;
 import exceptions.DAOException;
 import org.bson.conversions.Bson;
@@ -59,6 +60,24 @@ public class SolicitudTrasladoDAO extends ISolicitudTrasladoDAO {
             throw new DAOException("No se pudo actualizar la solicitud de traslado");
         }
     }
+    
+    @Override
+    public void asignarEmpresaTransportista(String codigo, EmpresaTransportista empresatransportista) throws DAOException {
+    MongoCollection<SolicitudTraslado> coleccionST = this.getCollection();
+
+    // Crea un filtro para encontrar la solicitud de traslado por su identificador
+    Bson filtro = Filters.eq("codigo", codigo);
+
+    // Crea un objeto de actualización para asignar la empresa transportista a la solicitud de traslado
+    Bson actualizacion = Updates.set("empresatransportista", empresatransportista);
+
+    // Ejecuta la operación de actualización
+    UpdateResult resultado = coleccionST.updateOne(filtro, actualizacion);
+
+    if (resultado.getModifiedCount() != 1) {
+        throw new DAOException("No se pudo asignar la empresa transportista a la solicitud de traslado");
+    }
+}
 
     @Override
     public MongoCollection<SolicitudTraslado> getCollection() {

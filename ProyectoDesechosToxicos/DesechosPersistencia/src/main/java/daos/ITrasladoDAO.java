@@ -19,7 +19,7 @@ import org.bson.codecs.pojo.PojoCodecProvider;
  *
  * @author icedo
  */
-public abstract class IAsignarTrasladoDAO {
+public abstract class ITrasladoDAO {
     
     public MongoClient getConexionMongoClient() {
         //Creamos un proveedor de codecs para las clases POJOs

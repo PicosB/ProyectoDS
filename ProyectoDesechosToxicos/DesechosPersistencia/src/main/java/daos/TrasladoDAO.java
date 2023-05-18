@@ -14,7 +14,7 @@ import exceptions.DAOException;
  *
  * @author icedo
  */
-public class AsignarTrasladoDAO extends IAsignarTrasladoDAO {
+public class TrasladoDAO extends ITrasladoDAO {
 
     @Override
     public void guardar(Traslado traslado) throws DAOException {

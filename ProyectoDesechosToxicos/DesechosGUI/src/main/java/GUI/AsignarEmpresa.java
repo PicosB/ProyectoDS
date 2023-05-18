@@ -237,6 +237,7 @@ public class AsignarEmpresa extends javax.swing.JFrame {
 
         try {
             this.solicitudTrasladoDAO.verificaExistencia(this.txtCodigo.getText().trim()).setEmpresatransportista(empresaTransportista);
+            this.solicitudTrasladoDAO.asignarEmpresaTransportista(this.txtCodigo.getText(), empresaTransportista);
             JOptionPane.showMessageDialog(null, "Se asignó correctamente la empresa.");
           
         } catch (Exception e) {

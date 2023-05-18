@@ -4,11 +4,17 @@
  */
 package GUI;
 
+import daos.ISolicitudTrasladoDAO;
+import daos.SolicitudTrasladoDAO;
+import entidades.SolicitudTraslado;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author luis
  */
 public class RegistrarTraslado extends javax.swing.JFrame {
+    ISolicitudTrasladoDAO solicitudTrasladoDAO = new SolicitudTrasladoDAO();
 
     /**
      * Creates new form RegistrarTraslado
@@ -16,7 +22,10 @@ public class RegistrarTraslado extends javax.swing.JFrame {
     public RegistrarTraslado() {
         initComponents();
     }
-
+    
+    public void asignarEmpresaTransportista (){
+        // 
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,28 +35,89 @@ public class RegistrarTraslado extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollBar1 = new javax.swing.JScrollBar();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        codigoTxt = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        labelInformacion = new javax.swing.JLabel();
+        btnConsultarTrasladosAsignados = new javax.swing.JButton();
+        aceptarBtn = new javax.swing.JButton();
+        cancelarBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Registrar Traslado");
+
+        jLabel3.setText("Código de la solicitud");
+
+        jLabel2.setText("Información de la solicitud");
+
+        btnConsultarTrasladosAsignados.setText("Consultar traslados asignados");
+        btnConsultarTrasladosAsignados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarTrasladosAsignadosActionPerformed(evt);
+            }
+        });
+
+        aceptarBtn.setText("Aceptar");
+        aceptarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aceptarBtnActionPerformed(evt);
+            }
+        });
+
+        cancelarBtn.setText("Cancelar");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(229, 229, 229)
-                .addComponent(jLabel1)
-                .addContainerGap(253, Short.MAX_VALUE))
+                .addGap(74, 74, 74)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(codigoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(aceptarBtn)
+                            .addComponent(jLabel2))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnConsultarTrasladosAsignados)
+                                    .addComponent(labelInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(77, 77, 77)
+                                .addComponent(cancelarBtn)))))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(jLabel1)
-                .addContainerGap(341, Short.MAX_VALUE))
+                .addGap(46, 46, 46)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(codigoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
+                .addComponent(btnConsultarTrasladosAsignados)
+                .addGap(27, 27, 27)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelInformacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(aceptarBtn)
+                    .addComponent(cancelarBtn))
+                .addGap(82, 82, 82))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -64,6 +134,29 @@ public class RegistrarTraslado extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnConsultarTrasladosAsignadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarTrasladosAsignadosActionPerformed
+        // TODO add your handling code here:
+        consultaTrasladosAsignados();
+    }//GEN-LAST:event_btnConsultarTrasladosAsignadosActionPerformed
+
+    private void aceptarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarBtnActionPerformed
+        // TODO add your handling code here:
+        new AsignarVehiculos(this.codigoTxt.getText()).setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_aceptarBtnActionPerformed
+    private SolicitudTraslado consultaTrasladosAsignados(){
+        try{
+            
+        SolicitudTraslado solicitudTraslado = solicitudTrasladoDAO.verificaExistencia(this.codigoTxt.getText());
+        
+        this.labelInformacion.setText(solicitudTrasladoDAO.verificaExistencia(this.codigoTxt.getText()).toString());
+        return solicitudTraslado;
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Ocurrió un error consultando los traslados, intente de nuevo.");
+            return null;
+        }
+        
+    }
     /**
      * @param args the command line arguments
      */
@@ -100,7 +193,15 @@ public class RegistrarTraslado extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton aceptarBtn;
+    private javax.swing.JButton btnConsultarTrasladosAsignados;
+    private javax.swing.JButton cancelarBtn;
+    private javax.swing.JTextField codigoTxt;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollBar jScrollBar1;
+    private javax.swing.JLabel labelInformacion;
     // End of variables declaration//GEN-END:variables
 }

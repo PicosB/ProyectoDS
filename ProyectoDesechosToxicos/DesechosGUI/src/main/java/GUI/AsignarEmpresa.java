@@ -94,6 +94,11 @@ public class AsignarEmpresa extends javax.swing.JFrame {
         });
 
         cancelarBtn.setText("Cancelar");
+        cancelarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -213,7 +218,14 @@ public class AsignarEmpresa extends javax.swing.JFrame {
     private void aceptarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarBtnActionPerformed
         // TODO add your handling code here:
         asignarEmpresaTransportista();
+        
     }//GEN-LAST:event_aceptarBtnActionPerformed
+
+    private void cancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBtnActionPerformed
+        // TODO add your handling code here:
+        new PantallaPrincipal().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_cancelarBtnActionPerformed
     public ArrayList<SolicitudTraslado> obtenerSolicitudesExistentes() {
 
         DefaultListModel<String> modelSelected = (DefaultListModel<String>) this.listTraslados.getModel();

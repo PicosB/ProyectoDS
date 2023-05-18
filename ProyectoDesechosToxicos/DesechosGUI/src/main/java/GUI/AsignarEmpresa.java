@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import daos.Fachada;
 import daos.ISolicitudTrasladoDAO;
 import daos.SolicitudTrasladoDAO;
 import entidades.EmpresaTransportista;
@@ -19,6 +20,7 @@ import javax.swing.JOptionPane;
 public class AsignarEmpresa extends javax.swing.JFrame {
 
     ISolicitudTrasladoDAO solicitudTrasladoDAO = new SolicitudTrasladoDAO();
+    Fachada solicitudFachada = new Fachada();
 
     /**
      * Creates new form AsignarEmpresa
@@ -240,7 +242,7 @@ public class AsignarEmpresa extends javax.swing.JFrame {
         for (int i = 0; i < solicitudTrasladoDAO.getCollection().countDocuments(); i++) {
 
             try {
-                solicitudes.add(this.solicitudTrasladoDAO.verificaExistencia(this.txtCodigo.getText()));
+                solicitudes.add(this.solicitudFachada.verificarExistenciaSolicitudTraslado(this.txtCodigo.getText()));
                 break;
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Ocurrió un error obteniendo los traslados del sistema.");
@@ -255,8 +257,8 @@ public class AsignarEmpresa extends javax.swing.JFrame {
         empresaTransportista.setNombre(this.cbEmpresasTransportistas.getSelectedItem().toString());
 
         try {
-            this.solicitudTrasladoDAO.verificaExistencia(this.txtCodigo.getText().trim()).setEmpresatransportista(empresaTransportista);
-            this.solicitudTrasladoDAO.asignarEmpresaTransportista(this.txtCodigo.getText(), empresaTransportista);
+            this.solicitudFachada.verificarExistenciaSolicitudTraslado(this.txtCodigo.getText().trim()).setEmpresatransportista(empresaTransportista);
+            this.solicitudFachada.asignarEmpresaTransportistaSolicitudTraslado(this.txtCodigo.getText(), empresaTransportista);
             JOptionPane.showMessageDialog(null, "Se asignó correctamente la empresa.");
           
         } catch (Exception e) {

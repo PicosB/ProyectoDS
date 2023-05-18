@@ -7,6 +7,7 @@ package GUI;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
+import daos.Fachada;
 import daos.IResiduoDAO;
 import daos.ISolicitudTrasladoDAO;
 import daos.ResiduoDAO;
@@ -27,7 +28,8 @@ import javax.swing.JOptionPane;
 public class SolicitarTraslado extends javax.swing.JFrame {
 
     IResiduoDAO residuoDAO = new ResiduoDAO();
-    ISolicitudTrasladoDAO solicitudTrasladoDAO = new SolicitudTrasladoDAO();
+    Fachada residuoFachada = new Fachada();
+    Fachada solicitudFachada = new Fachada();
 
     /**
      * Creates new form SolicitarTraslado
@@ -67,7 +69,7 @@ public class SolicitarTraslado extends javax.swing.JFrame {
 
         try {
             solicitudTraslado = new SolicitudTraslado(codigo, obtenerResiduosSeleccionados(), fechaSeleccionada, cantidadResiduo, asingado, destino, null);
-            solicitudTrasladoDAO.guardar(solicitudTraslado);
+            solicitudFachada.crearSolicitudTraslado(solicitudTraslado);
             JOptionPane.showMessageDialog(null, "Se guardó exitosamente su solicitud");
 
         } catch (Exception e) {
@@ -126,7 +128,7 @@ public class SolicitarTraslado extends javax.swing.JFrame {
         ArrayList<Residuo> residuos = new ArrayList<>();
         for (int i = 0; i < modelSelected.getSize(); i++) {
             try {
-                residuos.add(this.residuoDAO.verificaExistenciaPorNombre(modelSelected.get(i)));
+                residuos.add(this.residuoFachada.verificarExistenciaResiduoPorNombre(modelSelected.get(i)));
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Ocurrió un error obteniendo los residuos del sistema.");
             }

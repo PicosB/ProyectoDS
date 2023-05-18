@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import daos.Fachada;
 import daos.ISolicitudTrasladoDAO;
 import daos.ITrasladoDAO;
 import daos.SolicitudTrasladoDAO;
@@ -26,10 +27,12 @@ public class AsignarVehiculos extends javax.swing.JFrame {
     /**
      * Creates new form AsignarVehiculos
      */
-    ISolicitudTrasladoDAO solicitudTrasladoDAO = new SolicitudTrasladoDAO();
+//    ISolicitudTrasladoDAO solicitudTrasladoDAO = new SolicitudTrasladoDAO();
+    Fachada solicitudFachada = new Fachada();
+    Fachada trasladoFachada = new Fachada();
     String codigoSolicitud;
     ArrayList<Vehiculo> vehiculos = new ArrayList<>();
-    ITrasladoDAO trasladoDAO = new TrasladoDAO();
+//    ITrasladoDAO trasladoDAO = new TrasladoDAO();
 
     public AsignarVehiculos(String codigo) {
         initComponents();
@@ -42,7 +45,7 @@ public class AsignarVehiculos extends javax.swing.JFrame {
 
     public void obtenerEmpresaTransportista() {
         try {
-            this.labelEmpresaTransportista.setText(this.solicitudTrasladoDAO.verificaExistencia(this.codigoSolicitud).getEmpresatransportista().getNombre());
+            this.labelEmpresaTransportista.setText(this.solicitudFachada.verificarExistenciaSolicitudTraslado(this.codigoSolicitud).getEmpresatransportista().getNombre());
             llenarLista();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ocurrió un error obteniendo la empresa de transporte");
@@ -367,10 +370,10 @@ public class AsignarVehiculos extends javax.swing.JFrame {
                         Float.valueOf(this.txtCosto.getText()),
                         fechaLlegadaDate.getDate(),
                         this.txtTratamiento.getText(),
-                        this.solicitudTrasladoDAO.verificaExistencia(codigoSolicitud),
+                        this.solicitudFachada.verificarExistenciaSolicitudTraslado(codigoSolicitud),
                         Float.valueOf(this.txtCantidad.getText()),
                         vehiculoSeleccionado);
-                this.trasladoDAO.guardar(traslado);
+                this.trasladoFachada.crearTraslado(traslado);
 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Ocurrió un error al registrar el traslado");

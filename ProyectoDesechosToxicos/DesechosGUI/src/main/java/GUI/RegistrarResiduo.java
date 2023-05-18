@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import daos.Fachada;
 import daos.IResiduoDAO;
 import daos.ResiduoDAO;
 import entidades.ConstituyenteQuimico;
@@ -18,7 +19,10 @@ import javax.swing.JOptionPane;
  * @author luis
  */
 public class RegistrarResiduo extends javax.swing.JFrame {
-    private static RegistrarResiduo instance; IResiduoDAO residuoDAO = new ResiduoDAO();
+ 
+    Fachada residuoFachada = new Fachada();
+    
+
     
     
     /**
@@ -62,7 +66,7 @@ public class RegistrarResiduo extends javax.swing.JFrame {
         residuo.setConstituyenteQuimicoPrimario(constituyenteQuimicoPrimario);
         residuo.setConstituyenteQuimicoSecundario(constituyenteQuimicoSecundario);
         try{
-           residuoDAO.guardar(residuo);
+           residuoFachada.crearResiduo(residuo);
            JOptionPane.showMessageDialog(null, "Se agregó un residuo");
         }catch(Exception e ){
             JOptionPane.showMessageDialog(null, "Ocurrió un error al momento de registrar");

@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import daos.Fachada;
 import daos.ISolicitudTrasladoDAO;
 import daos.SolicitudTrasladoDAO;
 import entidades.SolicitudTraslado;
@@ -14,8 +15,8 @@ import javax.swing.JOptionPane;
  * @author luis
  */
 public class RegistrarTraslado extends javax.swing.JFrame {
-    ISolicitudTrasladoDAO solicitudTrasladoDAO = new SolicitudTrasladoDAO();
 
+      Fachada solicitudFachada = new Fachada();
     /**
      * Creates new form RegistrarTraslado
      */
@@ -147,9 +148,9 @@ public class RegistrarTraslado extends javax.swing.JFrame {
     private SolicitudTraslado consultaTrasladosAsignados(){
         try{
             
-        SolicitudTraslado solicitudTraslado = solicitudTrasladoDAO.verificaExistencia(this.codigoTxt.getText());
+        SolicitudTraslado solicitudTraslado = solicitudFachada.verificarExistenciaSolicitudTraslado(this.codigoTxt.getText());
         
-        this.labelInformacion.setText(solicitudTrasladoDAO.verificaExistencia(this.codigoTxt.getText()).toString());
+        this.labelInformacion.setText(solicitudFachada.verificarExistenciaSolicitudTraslado(this.codigoTxt.getText()).toString());
         return solicitudTraslado;
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Ocurrió un error consultando los traslados, intente de nuevo.");

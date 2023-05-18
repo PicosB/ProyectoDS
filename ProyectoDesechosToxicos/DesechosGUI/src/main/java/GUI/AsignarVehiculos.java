@@ -5,9 +5,14 @@
 package GUI;
 
 import daos.ISolicitudTrasladoDAO;
+import daos.ITrasladoDAO;
 import daos.SolicitudTrasladoDAO;
+import daos.TrasladoDAO;
 import entidades.EmpresaTransportista;
+import entidades.SolicitudTraslado;
+import entidades.Traslado;
 import entidades.Vehiculo;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -24,8 +29,7 @@ public class AsignarVehiculos extends javax.swing.JFrame {
     ISolicitudTrasladoDAO solicitudTrasladoDAO = new SolicitudTrasladoDAO();
     String codigoSolicitud;
     ArrayList<Vehiculo> vehiculos = new ArrayList<>();
-
-
+    ITrasladoDAO trasladoDAO = new TrasladoDAO();
     public AsignarVehiculos(String codigo) {
         initComponents();
         this.labelEmpresaTransportista.setText("");
@@ -70,11 +74,11 @@ public class AsignarVehiculos extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txtCosto = new javax.swing.JTextField();
         fechaLlegadaDatePicker = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtTratamiento = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtCantidad = new javax.swing.JTextField();
+        fechaLlegadaDate = new com.github.lgooddatepicker.components.DatePicker();
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -137,17 +141,40 @@ public class AsignarVehiculos extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(69, 69, 69)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(180, 180, 180)
-                        .addComponent(jLabel1))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(13, 13, 13)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel5)
+                                            .addComponent(jLabel4)
+                                            .addComponent(jLabel2)))
+                                    .addComponent(fechaLlegadaDatePicker))
+                                .addGap(45, 45, 45)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtCosto)
+                                    .addComponent(txtCodigo)
+                                    .addComponent(txtKilometros)
+                                    .addComponent(fechaLlegadaDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel7)
+                                        .addGap(40, 40, 40))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addGap(50, 50, 50)))
+                                .addGap(27, 27, 27)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtTratamiento, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+                                    .addComponent(txtCantidad))))
+                        .addGap(209, 209, 209))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(136, 136, 136)
-                        .addComponent(aceptarBtn)
-                        .addGap(101, 101, 101)
-                        .addComponent(cancelarBtn))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(69, 69, 69)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
@@ -155,45 +182,19 @@ public class AsignarVehiculos extends javax.swing.JFrame {
                                 .addComponent(labelEmpresaTransportista, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(24, 24, 24)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addGap(13, 13, 13)
-                                            .addComponent(jLabel4)
-                                            .addGap(33, 33, 33))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                            .addGap(34, 34, 34)
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                                    .addComponent(jLabel2)
-                                                    .addGap(46, 46, 46))
-                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                                    .addComponent(jLabel5)
-                                                    .addGap(45, 45, 45)))))
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txtCosto)
-                                        .addComponent(txtCodigo)
-                                        .addComponent(txtKilometros, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(fechaLlegadaDatePicker)
-                                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                                    .addGap(9, 9, 9)
-                                                    .addComponent(jLabel6)))
-                                            .addGap(18, 18, 18))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addGap(25, 25, 25)
-                                            .addComponent(jLabel7)
-                                            .addGap(40, 40, 40)))
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jTextField1)
-                                        .addComponent(jTextField2)
-                                        .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)))))))
-                .addContainerGap(73, Short.MAX_VALUE))
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(180, 180, 180)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(132, 132, 132)
+                        .addComponent(aceptarBtn)
+                        .addGap(128, 128, 128)
+                        .addComponent(cancelarBtn)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,30 +219,30 @@ public class AsignarVehiculos extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtCosto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fechaLlegadaDatePicker)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
+                    .addComponent(fechaLlegadaDate, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                    .addComponent(txtTratamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
+                    .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(aceptarBtn)
                     .addComponent(cancelarBtn))
-                .addGap(29, 29, 29))
+                .addGap(54, 54, 54))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -293,8 +294,7 @@ public class AsignarVehiculos extends javax.swing.JFrame {
         Vehiculo v20 = new Vehiculo("Avión", e5);
         Vehiculo v21 = new Vehiculo("Barco", e6);
         Vehiculo v22 = new Vehiculo("Automovil", e7);
-        
-    
+
         vehiculos.add(v1);
         vehiculos.add(v2);
         vehiculos.add(v3);
@@ -322,10 +322,9 @@ public class AsignarVehiculos extends javax.swing.JFrame {
     private ArrayList<Vehiculo> obtieneVehiculos() {
         return this.vehiculos;
     }
-    private void llenarLista(){
-        
-      
-        
+
+    private void llenarLista() {
+
         DefaultListModel<String> modelSeleccionados = new DefaultListModel<String>();
 
         this.listVehiculos.setModel(modelSeleccionados);
@@ -334,18 +333,50 @@ public class AsignarVehiculos extends javax.swing.JFrame {
         ArrayList vehiculos = obtieneVehiculos();
 
         for (int i = 0; i < vehiculos.size(); i++) {
-            if (obtieneVehiculos().get(i).getEmpresatransportista().getNombre().equalsIgnoreCase(this.labelEmpresaTransportista.getText())){
-                 modelSeleccionados.addElement(vehiculos.get(i).toString());
+            if (obtieneVehiculos().get(i).getEmpresatransportista().getNombre().equalsIgnoreCase(this.labelEmpresaTransportista.getText())) {
+                modelSeleccionados.addElement(vehiculos.get(i).toString());
             }
-           
-     
-    
+
         }
     }
 
-    /**
-     * @param args the command line arguments
-     */
+    private void registrarTraslado() {
+        Vehiculo vehiculoSeleccionado = new Vehiculo();
+
+        DefaultListModel<String> modelSelected = (DefaultListModel<String>) this.listVehiculos.getModel();
+        ArrayList<SolicitudTraslado> residuos = new ArrayList<>();
+        for (int i = 0; i < modelSelected.getSize(); i++) {
+            try {
+                if (obtieneVehiculos().get(i).equals(modelSelected.get(i))) {
+                    vehiculoSeleccionado = obtieneVehiculos().get(i);
+
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Ocurrió un error obteniendo los residuos del sistema.");
+            }
+            try {
+
+                Traslado traslado = new Traslado(this.txtCodigo.getText(),
+                        Float.valueOf(this.txtKilometros.getText()),
+                        Float.valueOf(this.txtCosto.getText()),
+                        fechaLlegadaDate.getDate(),
+                        this.txtTratamiento.getText(),
+                        this.solicitudTrasladoDAO.verificaExistencia(codigoSolicitud),
+                        Float.valueOf(this.txtCantidad.getText()),
+                        vehiculoSeleccionado);
+                        this.trasladoDAO.guardar(traslado);
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Ocurrió un error al registrar el traslado");
+            }
+        }
+    }
+        /**
+         * @param args the command line arguments
+         */
+    
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -381,6 +412,7 @@ public class AsignarVehiculos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aceptarBtn;
     private javax.swing.JButton cancelarBtn;
+    private com.github.lgooddatepicker.components.DatePicker fechaLlegadaDate;
     private javax.swing.JLabel fechaLlegadaDatePicker;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -393,13 +425,12 @@ public class AsignarVehiculos extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JLabel labelEmpresaTransportista;
     private javax.swing.JList<String> listVehiculos;
+    private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtCosto;
     private javax.swing.JTextField txtKilometros;
+    private javax.swing.JTextField txtTratamiento;
     // End of variables declaration//GEN-END:variables
 }

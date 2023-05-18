@@ -121,6 +121,8 @@ public class RegistrarResiduo extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(0, 102, 0));
+
         añadirBtn.setText("Añadir");
         añadirBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -175,7 +177,12 @@ public class RegistrarResiduo extends javax.swing.JFrame {
             }
         });
 
-        cbEmpresa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Intel", "Chalet", "La Palmera", "Office Depot", "Moe's", "ITSON", " " }));
+        cbEmpresa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Intel", "Chalet", "La Palmera", "Office Depot", "Moe's", "ITSON", "" }));
+        cbEmpresa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbEmpresaActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Seleccione empresa");
 
@@ -271,6 +278,7 @@ public class RegistrarResiduo extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void añadirBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_añadirBtnActionPerformed
@@ -326,6 +334,10 @@ public class RegistrarResiduo extends javax.swing.JFrame {
             this.dispose();
 
     }//GEN-LAST:event_cancelarBtnActionPerformed
+
+    private void cbEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbEmpresaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbEmpresaActionPerformed
 
   
 

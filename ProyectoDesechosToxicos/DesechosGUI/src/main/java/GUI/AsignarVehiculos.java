@@ -5,15 +5,10 @@
 package GUI;
 
 import daos.Fachada;
-import daos.ISolicitudTrasladoDAO;
-import daos.ITrasladoDAO;
-import daos.SolicitudTrasladoDAO;
-import daos.TrasladoDAO;
 import entidades.EmpresaTransportista;
 import entidades.SolicitudTraslado;
 import entidades.Traslado;
 import entidades.Vehiculo;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -93,8 +88,10 @@ public class AsignarVehiculos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        jPanel1.setBackground(new java.awt.Color(0, 102, 0));
+
         jLabel1.setText("Asignar Vehículos");
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
 
         jLabel3.setText("Empresa Transportista");
 
@@ -166,14 +163,9 @@ public class AsignarVehiculos extends javax.swing.JFrame {
                                     .addComponent(fechaLlegadaDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel7)
-                                        .addGap(40, 40, 40))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addGap(50, 50, 50)))
-                                .addGap(27, 27, 27)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel6))
+                                .addGap(77, 77, 77)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtTratamiento, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
                                     .addComponent(txtCantidad))))
@@ -254,6 +246,7 @@ public class AsignarVehiculos extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void aceptarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarBtnActionPerformed

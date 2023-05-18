@@ -4,12 +4,9 @@
  */
 package GUI;
 
-import com.mongodb.client.FindIterable;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoCursor;
 import daos.ISolicitudTrasladoDAO;
 import daos.SolicitudTrasladoDAO;
-import entidades.Residuo;
+import entidades.EmpresaTransportista;
 import entidades.SolicitudTraslado;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
@@ -28,7 +25,7 @@ public class AsignarEmpresa extends javax.swing.JFrame {
      */
     public AsignarEmpresa() {
         initComponents();
-    
+
     }
 
     /**
@@ -51,7 +48,11 @@ public class AsignarEmpresa extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         seleccionarBtn = new javax.swing.JButton();
+        labelSolicitud = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        cbEmpresasTransportistas = new javax.swing.JComboBox<>();
+        aceptarBtn = new javax.swing.JButton();
+        cancelarBtn = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,6 +76,24 @@ public class AsignarEmpresa extends javax.swing.JFrame {
         jLabel5.setText("Solicitud Seleccionada");
 
         seleccionarBtn.setText("Seleccionar");
+        seleccionarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                seleccionarBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("Seleccionar la empresa");
+
+        cbEmpresasTransportistas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Transportes Sixtos", "Autotanques Reynosa", "Autotanques Especializados Arias", "Transportes Gama", "Flensa", "STIL", "Fletera nacional de gases" }));
+
+        aceptarBtn.setText("Aceptar");
+        aceptarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aceptarBtnActionPerformed(evt);
+            }
+        });
+
+        cancelarBtn.setText("Cancelar");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -96,21 +115,31 @@ public class AsignarEmpresa extends javax.swing.JFrame {
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(seleccionarBtn))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(seleccionarBtn)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(21, 21, 21)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(labelSolicitud, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cbEmpresasTransportistas, 0, 274, Short.MAX_VALUE))))))
                 .addGap(120, 120, 120))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(245, 245, 245)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(245, 245, 245)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(163, 163, 163)
+                        .addComponent(aceptarBtn)
+                        .addGap(123, 123, 123)
+                        .addComponent(cancelarBtn)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -137,8 +166,16 @@ public class AsignarEmpresa extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(112, Short.MAX_VALUE))
+                    .addComponent(labelSolicitud, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(cbEmpresasTransportistas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(aceptarBtn)
+                    .addComponent(cancelarBtn))
+                .addGap(21, 21, 21))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -157,22 +194,32 @@ public class AsignarEmpresa extends javax.swing.JFrame {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
-            DefaultListModel<String> modelDisponibles = new DefaultListModel<String>();
+        DefaultListModel<String> modelDisponibles = new DefaultListModel<String>();
         listTraslados.setModel(modelDisponibles);
 
         //Se guardan los residuos en un arrayList 
-        ArrayList <SolicitudTraslado> solicitudes = obtenerSolicitudesExistentes();
+        ArrayList<SolicitudTraslado> solicitudes = obtenerSolicitudesExistentes();
 
         for (int i = 0; i < solicitudes.size(); i++) {
             modelDisponibles.addElement(solicitudes.get(i).toString());
         }
     }//GEN-LAST:event_btnAceptarActionPerformed
-   public ArrayList<SolicitudTraslado> obtenerSolicitudesExistentes() {
 
-           DefaultListModel<String> modelSelected = (DefaultListModel<String>) this.listTraslados.getModel();
+    private void seleccionarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionarBtnActionPerformed
+        // TODO add your handling code here:
+        this.labelSolicitud.setText(listTraslados.getSelectedValue().toString());
+    }//GEN-LAST:event_seleccionarBtnActionPerformed
+
+    private void aceptarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarBtnActionPerformed
+        // TODO add your handling code here:
+        asignarEmpresaTransportista();
+    }//GEN-LAST:event_aceptarBtnActionPerformed
+    public ArrayList<SolicitudTraslado> obtenerSolicitudesExistentes() {
+
+        DefaultListModel<String> modelSelected = (DefaultListModel<String>) this.listTraslados.getModel();
         ArrayList<SolicitudTraslado> solicitudes = new ArrayList<>();
         for (int i = 0; i < solicitudTrasladoDAO.getCollection().countDocuments(); i++) {
-         
+
             try {
                 solicitudes.add(this.solicitudTrasladoDAO.verificaExistencia(this.txtCodigo.getText()));
                 break;
@@ -184,9 +231,21 @@ public class AsignarEmpresa extends javax.swing.JFrame {
         return solicitudes;
     }
 
-    /**
-     * @param args the command line arguments
-     */
+    public void asignarEmpresaTransportista() {
+        EmpresaTransportista empresaTransportista = new EmpresaTransportista();
+        empresaTransportista.setNombre(this.cbEmpresasTransportistas.getSelectedItem().toString());
+
+        try {
+            this.solicitudTrasladoDAO.verificaExistencia(this.txtCodigo.getText().trim()).setEmpresatransportista(empresaTransportista);
+            JOptionPane.showMessageDialog(null, "Se asignó correctamente la empresa.");
+          
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Ocurrió un error en la asignación de la empresa, intente de nuevo.");
+        }
+    }
+        /**
+         * @param args the command line arguments
+         */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -220,7 +279,10 @@ public class AsignarEmpresa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton aceptarBtn;
     private javax.swing.JButton btnAceptar;
+    private javax.swing.JToggleButton cancelarBtn;
+    private javax.swing.JComboBox<String> cbEmpresasTransportistas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -229,6 +291,7 @@ public class AsignarEmpresa extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelSolicitud;
     private javax.swing.JList<String> listTraslados;
     private javax.swing.JButton seleccionarBtn;
     private javax.swing.JTextField txtCodigo;

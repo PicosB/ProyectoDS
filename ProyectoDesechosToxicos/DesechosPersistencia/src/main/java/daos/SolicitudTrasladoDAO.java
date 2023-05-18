@@ -25,7 +25,13 @@ public class SolicitudTrasladoDAO extends ISolicitudTrasladoDAO {
         MongoCollection<SolicitudTraslado> coleccionST = this.getCollection();
         coleccionST.insertOne(solicitudtraslado);
     }
-
+    /*
+     @Override
+    public void actualizar(SolicitudTraslado solicitudtraslado) throws DAOException {
+        MongoCollection<SolicitudTraslado> coleccionST = this.getCollection();
+        coleccionST.updateOne("empresaTransportista", solicitudtraslado);
+    }
+*/
     @Override
     public SolicitudTraslado verificaExistencia(String codigo) throws DAOException {
         MongoCollection<SolicitudTraslado> coleccionST = this.getCollection();

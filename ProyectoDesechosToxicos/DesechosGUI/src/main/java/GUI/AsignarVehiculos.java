@@ -250,11 +250,18 @@ public class AsignarVehiculos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void aceptarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarBtnActionPerformed
-
+     
+        
+        try{
+        registrarTraslado();
+              JOptionPane.showMessageDialog(null, "Se asignó correctamente el vehículo!");
         PantallaPrincipal pp = PantallaPrincipal.obtenerInstancia();
         pp.mostrarVentana();
         this.dispose();
-
+       }catch (Exception e){
+           JOptionPane.showMessageDialog(null, "Ocurrió un error, intente de nuevo.");
+       }
+       
     }//GEN-LAST:event_aceptarBtnActionPerformed
 
     private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed

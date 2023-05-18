@@ -62,7 +62,7 @@ public class SolicitarTraslado extends javax.swing.JFrame {
 
         SolicitudTraslado solicitudTraslado = null;
         try {
-
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ocurrió un error al recuperar residuos");
         }
@@ -73,7 +73,7 @@ public class SolicitarTraslado extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Se guardó exitosamente su solicitud");
 
         } catch (Exception e) {
-
+            JOptionPane.showMessageDialog(null, "No se pudo guardar la solicitud");
         }
 
     }
@@ -405,6 +405,7 @@ public class SolicitarTraslado extends javax.swing.JFrame {
             this.dispose();
 
         } catch (Exception e) {
+
             System.out.println(e);
         }
 

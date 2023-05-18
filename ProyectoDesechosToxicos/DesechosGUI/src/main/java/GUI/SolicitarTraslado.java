@@ -56,7 +56,7 @@ public class SolicitarTraslado extends javax.swing.JFrame {
         float cantidadResiduo = Float.valueOf(this.txtCantidad.getText());
         boolean asingado = false;
         Destino destino = new Destino(this.cbDestino.getSelectedItem().toString());
-        String codigo  = this.codigoTxt.getText();
+        String codigo = this.codigoTxt.getText();
 
         SolicitudTraslado solicitudTraslado = null;
         try {
@@ -66,7 +66,7 @@ public class SolicitarTraslado extends javax.swing.JFrame {
         }
 
         try {
-            solicitudTraslado = new SolicitudTraslado(codigo, obtenerResiduosSeleccionados(), fechaSeleccionada, cantidadResiduo, asingado, destino, null );
+            solicitudTraslado = new SolicitudTraslado(codigo, obtenerResiduosSeleccionados(), fechaSeleccionada, cantidadResiduo, asingado, destino, null);
             solicitudTrasladoDAO.guardar(solicitudTraslado);
             JOptionPane.showMessageDialog(null, "Se guardó exitosamente su solicitud");
 
@@ -74,11 +74,7 @@ public class SolicitarTraslado extends javax.swing.JFrame {
 
         }
 
-       
-
     }
-
-  
 
     private void seleccionarQuimico() {
 
@@ -358,6 +354,10 @@ public class SolicitarTraslado extends javax.swing.JFrame {
         try {
 
             guardarSolicitudTraslado();
+
+            PantallaPrincipal pp = new PantallaPrincipal();
+            pp.setVisible(true);
+            this.dispose();
 
         } catch (Exception e) {
             System.out.println(e);

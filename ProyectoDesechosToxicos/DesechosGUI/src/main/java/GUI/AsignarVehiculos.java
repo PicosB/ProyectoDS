@@ -253,7 +253,12 @@ public class AsignarVehiculos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void aceptarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarBtnActionPerformed
-        // TODO add your handling code here:
+       
+        
+        PantallaPrincipal pp = new PantallaPrincipal();
+        pp.setVisible(true);
+        this.dispose();
+
     }//GEN-LAST:event_aceptarBtnActionPerformed
 
     private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed

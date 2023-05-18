@@ -299,6 +299,10 @@ public class RegistrarResiduo extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         registrar();
+        
+        PantallaPrincipal pp = new PantallaPrincipal();
+        pp.setVisible(true);
+        this.dispose();
 
 
     }//GEN-LAST:event_registrarBtnActionPerformed

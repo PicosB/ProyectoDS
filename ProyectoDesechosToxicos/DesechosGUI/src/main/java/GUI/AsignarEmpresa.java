@@ -219,6 +219,11 @@ public class AsignarEmpresa extends javax.swing.JFrame {
         // TODO add your handling code here:
         asignarEmpresaTransportista();
         
+        PantallaPrincipal pp = new PantallaPrincipal();
+        pp.setVisible(true);
+        this.dispose();
+
+        
     }//GEN-LAST:event_aceptarBtnActionPerformed
 
     private void cancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBtnActionPerformed

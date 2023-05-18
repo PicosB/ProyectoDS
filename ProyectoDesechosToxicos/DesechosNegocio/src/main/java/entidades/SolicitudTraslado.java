@@ -124,6 +124,13 @@ public class SolicitudTraslado {
         this.empresatransportista = empresatransportista;
     }
 
+    @Override
+    public String toString() {
+        return "SolicitudTraslado{" + "id=" + id + ", residuo=" + residuo +
+                ", fechasolicitud=" + fechasolicitud + ", cantidadresiduo=" + cantidadresiduo +
+                ", asignado=" + asignado + ", destino=" + destino ;
+    }
+
    
     
     

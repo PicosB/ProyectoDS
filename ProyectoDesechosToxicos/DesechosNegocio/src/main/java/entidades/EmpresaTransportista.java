@@ -12,7 +12,7 @@ import org.bson.types.ObjectId;
  */
 public class EmpresaTransportista extends Empresa{
     
-   
+
     
     public EmpresaTransportista() {
     }

@@ -43,5 +43,10 @@ public class Empresa {
         this.nombre = nombre;
     }
 
+    @Override
+    public String toString() {
+       return "nombre: "+ nombre;
+    }
+
    
 }

@@ -355,8 +355,8 @@ public class SolicitarTraslado extends javax.swing.JFrame {
 
             guardarSolicitudTraslado();
 
-            PantallaPrincipal pp = new PantallaPrincipal();
-            pp.setVisible(true);
+            PantallaPrincipal pp = PantallaPrincipal.obtenerInstancia();
+            pp.mostrarVentana();
             this.dispose();
 
         } catch (Exception e) {
@@ -368,7 +368,8 @@ public class SolicitarTraslado extends javax.swing.JFrame {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
-        new PantallaPrincipal().setVisible(true);
+            PantallaPrincipal pp = PantallaPrincipal.obtenerInstancia();
+            pp.mostrarVentana();
         this.setVisible(false);
     }//GEN-LAST:event_btnCancelarActionPerformed
 

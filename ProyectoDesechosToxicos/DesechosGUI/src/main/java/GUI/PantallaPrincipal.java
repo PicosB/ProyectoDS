@@ -9,14 +9,24 @@ package GUI;
  * @author luis
  */
 public class PantallaPrincipal extends javax.swing.JFrame {
-
+private static PantallaPrincipal instancia;
     /**
      * Creates new form PantallaPrincipal
      */
-    public PantallaPrincipal() {
+    private PantallaPrincipal() {
         initComponents();
     }
 
+    public static PantallaPrincipal obtenerInstancia() {
+        if (instancia == null) {
+            instancia = new PantallaPrincipal();
+        }
+        return instancia;
+    }
+    
+    public void mostrarVentana() {
+        this.setVisible(true);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

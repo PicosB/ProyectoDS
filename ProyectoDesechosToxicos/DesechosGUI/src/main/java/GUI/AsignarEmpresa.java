@@ -219,17 +219,19 @@ public class AsignarEmpresa extends javax.swing.JFrame {
         // TODO add your handling code here:
         asignarEmpresaTransportista();
         
-        PantallaPrincipal pp = new PantallaPrincipal();
-        pp.setVisible(true);
-        this.dispose();
+       PantallaPrincipal pp = PantallaPrincipal.obtenerInstancia();
+            pp.mostrarVentana();
+            this.dispose();
 
         
     }//GEN-LAST:event_aceptarBtnActionPerformed
 
     private void cancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBtnActionPerformed
         // TODO add your handling code here:
-        new PantallaPrincipal().setVisible(true);
-        this.setVisible(false);
+        PantallaPrincipal pp = PantallaPrincipal.obtenerInstancia();
+            pp.mostrarVentana();
+            this.dispose();
+
     }//GEN-LAST:event_cancelarBtnActionPerformed
     public ArrayList<SolicitudTraslado> obtenerSolicitudesExistentes() {
 

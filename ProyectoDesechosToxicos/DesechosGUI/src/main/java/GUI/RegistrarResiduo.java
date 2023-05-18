@@ -18,7 +18,9 @@ import javax.swing.JOptionPane;
  * @author luis
  */
 public class RegistrarResiduo extends javax.swing.JFrame {
-    IResiduoDAO residuoDAO = new ResiduoDAO();
+    private static RegistrarResiduo instance; IResiduoDAO residuoDAO = new ResiduoDAO();
+    
+    
     /**
      * Creates new form RegistrarResiduo
      */
@@ -300,17 +302,20 @@ public class RegistrarResiduo extends javax.swing.JFrame {
 
         registrar();
         
-        PantallaPrincipal pp = new PantallaPrincipal();
-        pp.setVisible(true);
-        this.dispose();
+        PantallaPrincipal pp = PantallaPrincipal.obtenerInstancia();
+            pp.mostrarVentana();
+            this.dispose();
+
 
 
     }//GEN-LAST:event_registrarBtnActionPerformed
 
     private void cancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBtnActionPerformed
         // TODO add your handling code here:
-       new PantallaPrincipal().setVisible(true);
-       this.setVisible(false);
+       PantallaPrincipal pp = PantallaPrincipal.obtenerInstancia();
+            pp.mostrarVentana();
+            this.dispose();
+
     }//GEN-LAST:event_cancelarBtnActionPerformed
 
     /**

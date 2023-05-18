@@ -30,6 +30,7 @@ public class AsignarVehiculos extends javax.swing.JFrame {
     String codigoSolicitud;
     ArrayList<Vehiculo> vehiculos = new ArrayList<>();
     ITrasladoDAO trasladoDAO = new TrasladoDAO();
+
     public AsignarVehiculos(String codigo) {
         initComponents();
         this.labelEmpresaTransportista.setText("");
@@ -253,10 +254,9 @@ public class AsignarVehiculos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void aceptarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarBtnActionPerformed
-       
-        
-        PantallaPrincipal pp = new PantallaPrincipal();
-        pp.setVisible(true);
+
+        PantallaPrincipal pp = PantallaPrincipal.obtenerInstancia();
+        pp.mostrarVentana();
         this.dispose();
 
     }//GEN-LAST:event_aceptarBtnActionPerformed
@@ -370,17 +370,17 @@ public class AsignarVehiculos extends javax.swing.JFrame {
                         this.solicitudTrasladoDAO.verificaExistencia(codigoSolicitud),
                         Float.valueOf(this.txtCantidad.getText()),
                         vehiculoSeleccionado);
-                        this.trasladoDAO.guardar(traslado);
+                this.trasladoDAO.guardar(traslado);
 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Ocurrió un error al registrar el traslado");
             }
         }
     }
-        /**
-         * @param args the command line arguments
-         */
-    
+
+    /**
+     * @param args the command line arguments
+     */
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

@@ -15,6 +15,8 @@ public class Vehiculo {
     private ObjectId id;
     
     private String tipo;
+    
+    private boolean asignado;
     // Avion, Automóvil, Camión, Barco
     private EmpresaTransportista empresatransportista;
     
@@ -32,8 +34,23 @@ public class Vehiculo {
         this.empresatransportista = empresatransportista;
     }
 
+    public Vehiculo(String tipo, boolean asignado, EmpresaTransportista empresatransportista) {
+        this.tipo = tipo;
+        this.asignado = asignado;
+        this.empresatransportista = empresatransportista;
+    }
+     
+
     public ObjectId getId() {
         return id;
+    }
+
+    public boolean isAsignado() {
+        return asignado;
+    }
+
+    public void setAsignado(boolean asignado) {
+        this.asignado = asignado;
     }
 
     public void setId(ObjectId id) {

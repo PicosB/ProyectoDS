@@ -126,9 +126,8 @@ public class SolicitudTraslado {
 
     @Override
     public String toString() {
-        return "SolicitudTraslado{" + "id=" + id + ", residuo=" + residuo +
-                ", fechasolicitud=" + fechasolicitud + ", cantidadresiduo=" + cantidadresiduo +
-                ", asignado=" + asignado + ", destino=" + destino ;
+        return "residuo=" + residuo +
+                ", fechasolicitud=" + fechasolicitud  ;
     }
 
    

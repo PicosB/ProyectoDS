@@ -105,6 +105,11 @@ public class AsignarVehiculos extends javax.swing.JFrame {
         });
 
         cancelarBtn.setText("Cancelar");
+        cancelarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarBtnActionPerformed(evt);
+            }
+        });
 
         listVehiculos.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -303,6 +308,13 @@ public class AsignarVehiculos extends javax.swing.JFrame {
     private void txtKilometrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtKilometrosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtKilometrosActionPerformed
+
+    private void cancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBtnActionPerformed
+        // TODO add your handling code here:
+        
+        new RegistrarTraslado().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_cancelarBtnActionPerformed
     private void cargaVehiculos() {
         EmpresaTransportista e1 = new EmpresaTransportista("Transportes sixtos");
         EmpresaTransportista e2 = new EmpresaTransportista("Autotanques Reynosa");

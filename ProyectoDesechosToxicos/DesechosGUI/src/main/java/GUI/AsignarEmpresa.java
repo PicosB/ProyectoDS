@@ -39,8 +39,8 @@ public class AsignarEmpresa extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSlider1 = new javax.swing.JSlider();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         listTraslados = new javax.swing.JList<>();
         jLabel2 = new javax.swing.JLabel();
@@ -55,35 +55,34 @@ public class AsignarEmpresa extends javax.swing.JFrame {
         cbEmpresasTransportistas = new javax.swing.JComboBox<>();
         aceptarBtn = new javax.swing.JButton();
         cancelarBtn = new javax.swing.JToggleButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(0, 102, 0));
-
-        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Asignar empresa a traslado");
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jScrollPane1.setViewportView(listTraslados);
 
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 102, 0));
         jLabel2.setText("Seleccione un traslado");
 
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Código");
 
         btnAceptar.setForeground(new java.awt.Color(0, 0, 0));
-        btnAceptar.setText("Aceptar");
+        btnAceptar.setText("Obtener Solicitudes");
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAceptarActionPerformed(evt);
             }
         });
 
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Solicitudes de traslado");
 
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Solicitud Seleccionada");
 
         seleccionarBtn.setForeground(new java.awt.Color(0, 0, 0));
@@ -94,7 +93,7 @@ public class AsignarEmpresa extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Seleccionar la empresa");
 
         cbEmpresasTransportistas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Transportes Sixtos", "Autotanques Reynosa", "Autotanques Especializados Arias", "Transportes Gama", "Flensa", "STIL", "Fletera nacional de gases" }));
@@ -115,21 +114,43 @@ public class AsignarEmpresa extends javax.swing.JFrame {
             }
         });
 
+        jPanel2.setBackground(new java.awt.Color(0, 102, 0));
+
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Asignar empresa a traslado");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(154, 154, 154)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(jLabel1)
+                .addContainerGap(37, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addContainerGap(59, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(31, 31, 31)
                         .addComponent(btnAceptar))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(68, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -148,30 +169,26 @@ public class AsignarEmpresa extends javax.swing.JFrame {
                                     .addComponent(labelSolicitud, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(cbEmpresasTransportistas, 0, 274, Short.MAX_VALUE))))))
                 .addGap(120, 120, 120))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(245, 245, 245)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(163, 163, 163)
                         .addComponent(aceptarBtn)
                         .addGap(123, 123, 123)
-                        .addComponent(cancelarBtn)))
-                .addContainerGap(206, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(175, 175, 175))
+                        .addComponent(cancelarBtn))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(210, 210, 210)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
                 .addComponent(jLabel2)
-                .addGap(38, 38, 38)
+                .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
@@ -193,7 +210,7 @@ public class AsignarEmpresa extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(cbEmpresasTransportistas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(aceptarBtn)
                     .addComponent(cancelarBtn))
@@ -236,19 +253,19 @@ public class AsignarEmpresa extends javax.swing.JFrame {
     private void aceptarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarBtnActionPerformed
         // TODO add your handling code here:
         asignarEmpresaTransportista();
-        
-       PantallaPrincipal pp = PantallaPrincipal.obtenerInstancia();
-            pp.mostrarVentana();
-            this.dispose();
 
-        
+        PantallaPrincipal pp = PantallaPrincipal.obtenerInstancia();
+        pp.mostrarVentana();
+        this.dispose();
+
+
     }//GEN-LAST:event_aceptarBtnActionPerformed
 
     private void cancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBtnActionPerformed
         // TODO add your handling code here:
         PantallaPrincipal pp = PantallaPrincipal.obtenerInstancia();
-            pp.mostrarVentana();
-            this.dispose();
+        pp.mostrarVentana();
+        this.dispose();
 
     }//GEN-LAST:event_cancelarBtnActionPerformed
     public ArrayList<SolicitudTraslado> obtenerSolicitudesExistentes() {
@@ -273,17 +290,19 @@ public class AsignarEmpresa extends javax.swing.JFrame {
         empresaTransportista.setNombre(this.cbEmpresasTransportistas.getSelectedItem().toString());
 
         try {
-            /*
-            this.solicitudTraslado.verificarExistenciaSolicitudTraslado(this.txtCodigo.getText().trim()).setEmpresatransportista(empresaTransportista);
+
+            this.solicitudFachada.verificarExistenciaSolicitudTraslado(this.txtCodigo.getText().trim()).setEmpresatransportista(empresaTransportista);
             this.solicitudFachada.asignarEmpresaTransportistaSolicitudTraslado(this.txtCodigo.getText(), empresaTransportista);
             JOptionPane.showMessageDialog(null, "Se asignó correctamente la empresa.");
-          */
-          this.solicitudTrasladoDAO.verificaExistencia(this.txtCodigo.getText().trim()).setEmpresatransportista(empresaTransportista);
+
+            /*
+             this.solicitudTrasladoDAO.verificaExistencia(this.txtCodigo.getText().trim()).setEmpresatransportista(empresaTransportista);
             
-          this.solicitudTrasladoDAO.asignarEmpresaTransportista(this.txtCodigo.getText(), empresaTransportista);
+            this.solicitudTrasladoDAO.asignarEmpresaTransportista(this.txtCodigo.getText(), empresaTransportista);
                 
-           JOptionPane.showMessageDialog(null, "Se asignó correctamente la empresa.");
+            JOptionPane.showMessageDialog(null, "Se asignó correctamente la empresa.");
                 System.out.println("c");
+             */
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ocurrió un error en la asignación de la empresa, intente de nuevo.");
         }
@@ -335,7 +354,9 @@ public class AsignarEmpresa extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSlider jSlider1;
     private javax.swing.JLabel labelSolicitud;
     private javax.swing.JList<String> listTraslados;
     private javax.swing.JButton seleccionarBtn;

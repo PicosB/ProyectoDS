@@ -29,11 +29,17 @@ public class AsignarEmpresa extends javax.swing.JFrame {
         initComponents();
 
     }
-    public void validaVacios (){
-        if(this.txtCodigo.getText().isEmpty()){
-         JOptionPane.showMessageDialog(null, "Existen campos vacíos, verifique su información");
+
+    public static boolean esNumerico(String cadena) {
+        return cadena.matches("\\d+"); // 
+    }
+
+    public void validaVacios() {
+        if (this.txtCodigo.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Existen campos vacíos, verifique su información");
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -256,11 +262,15 @@ public class AsignarEmpresa extends javax.swing.JFrame {
 
     private void aceptarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarBtnActionPerformed
         // TODO add your handling code here:
-        asignarEmpresaTransportista();
-        
-        PantallaPrincipal pp = PantallaPrincipal.obtenerInstancia();
-        pp.mostrarVentana();
-        this.dispose();
+        if (esNumerico(this.txtCodigo.getText())) {
+            asignarEmpresaTransportista();
+
+            PantallaPrincipal pp = PantallaPrincipal.obtenerInstancia();
+            pp.mostrarVentana();
+            this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "El código debe ser numérico");
+        }
 
 
     }//GEN-LAST:event_aceptarBtnActionPerformed

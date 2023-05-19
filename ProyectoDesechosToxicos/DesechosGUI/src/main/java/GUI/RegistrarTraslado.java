@@ -25,6 +25,9 @@ public class RegistrarTraslado extends javax.swing.JFrame {
         initComponents();
     }
 
+     public static boolean esNumerico(String cadena) {
+        return cadena.matches("\\d+"); // 
+    }
     public boolean validaVacios() {
         if (this.codigoTxt.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Existen campos vacíos, verifique su información");
@@ -186,13 +189,18 @@ public class RegistrarTraslado extends javax.swing.JFrame {
 
     private void aceptarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarBtnActionPerformed
         // TODO add your handling code here:
-        if (consultaTrasladosAsignados() !=null){
+        if (esNumerico(this.codigoTxt.getText())){
+            if (consultaTrasladosAsignados() !=null){
              new AsignarVehiculos(this.codigoTxt.getText()).setVisible(true);
         this.setVisible(false);
         }else{
             new PantallaPrincipal().setVisible(true);
             this.dispose();
         }
+        }else{
+            JOptionPane.showMessageDialog(null, "El código debe ser numérico");
+        }
+        
        
     }//GEN-LAST:event_aceptarBtnActionPerformed
 

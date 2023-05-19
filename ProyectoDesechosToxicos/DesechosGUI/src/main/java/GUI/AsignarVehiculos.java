@@ -38,6 +38,9 @@ public class AsignarVehiculos extends javax.swing.JFrame {
         llenarLista();
     }
     
+     public static boolean esNumerico(String cadena) {
+        return cadena.matches("\\d+"); // 
+    }
     public boolean validaVacios (){
         if(this.txtCantidad.getText().isEmpty()
                 || this.txtCodigo.getText().isEmpty()
@@ -300,7 +303,11 @@ public class AsignarVehiculos extends javax.swing.JFrame {
 
     private void aceptarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarBtnActionPerformed
      if(validaVacios() == true){
-        
+        if (esNumerico(this.txtCodigo.getText()) == true
+                && esNumerico(this.txtKilometros.getText())
+                && esNumerico(this.txtCosto.getText())
+                && esNumerico(this.txtCantidad.getText())
+                && esNumerico(this.txtTratamiento.getText())==false){
         try{
             
             if(this.trasladoFachada.verificarExistenciaResiduo(this.txtCodigo.getText())==null){
@@ -319,6 +326,9 @@ public class AsignarVehiculos extends javax.swing.JFrame {
        }
      }else{
          JOptionPane.showMessageDialog(null, "Existen campos vacíos, verifique e intente de nuevo.");
+     }
+     }else{
+         JOptionPane.showMessageDialog(null, "Verifique sus datos e intente de nuevo");
      }
     }//GEN-LAST:event_aceptarBtnActionPerformed
 

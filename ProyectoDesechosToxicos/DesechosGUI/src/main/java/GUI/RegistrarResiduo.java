@@ -44,7 +44,9 @@ public class RegistrarResiduo extends javax.swing.JFrame {
         modelQuimicos.addElement("Cloro");
 
     }
-
+     public static boolean esNumerico(String cadena) {
+        return cadena.matches("\\d+"); // 
+    }
     public boolean validaVacios() {
         if (this.txtCodigo.getText().isEmpty()
                 || this.txtNombre.getText().isEmpty()) {
@@ -359,8 +361,13 @@ public class RegistrarResiduo extends javax.swing.JFrame {
 
     private void registrarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarBtnActionPerformed
         // TODO add your handling code here:
-
-        registrar();
+        if (esNumerico(this.txtCodigo.getText())
+                && esNumerico(this.txtNombre.getText())){
+               registrar();
+        }else{
+            JOptionPane.showMessageDialog(null, "Verifique sus datos e intente de nuevo");
+        }
+     
 
 
     }//GEN-LAST:event_registrarBtnActionPerformed

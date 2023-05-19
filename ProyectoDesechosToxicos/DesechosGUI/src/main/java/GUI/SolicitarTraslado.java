@@ -53,15 +53,21 @@ public class SolicitarTraslado extends javax.swing.JFrame {
         }
 
     }
-   public boolean validaVacios() {
-        if (this.codigoTxt.getText().isEmpty() 
+
+    public static boolean esNumerico(String cadena) {
+        return cadena.matches("\\d+"); // 
+    }
+
+    public boolean validaVacios() {
+        if (this.codigoTxt.getText().isEmpty()
                 || this.txtCantidad.getText().isEmpty()) {
-         
+
             return false;
-        }else{
+        } else {
             return true;
         }
     }
+
     public void guardarSolicitudTraslado() {
 
         LocalDate fechaSeleccionada = this.trasladoDatePicker.getSelectedDate();
@@ -83,7 +89,7 @@ public class SolicitarTraslado extends javax.swing.JFrame {
                 solicitudTraslado = fabricaSolicitud.crearSolicitud(codigo, obtenerResiduosSeleccionados(), fechaSeleccionada, cantidadResiduo, asingado, destino, null);
                 solicitudFachada.crearSolicitudTraslado(solicitudTraslado);
                 JOptionPane.showMessageDialog(null, "Se guardó exitosamente su solicitud");
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Esta solicitud ya existe");
             }
 
@@ -429,21 +435,28 @@ public class SolicitarTraslado extends javax.swing.JFrame {
 
     private void btnSolicitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitarActionPerformed
         // TODO add your handling code here:
-        if (validaVacios() == true){
-        try {
 
-            guardarSolicitudTraslado();
+        if (validaVacios() == true) {
+            if (esNumerico(this.txtCantidad.getText())
+                    && esNumerico(this.codigoTxt.getText())) {
+                try {
 
-            PantallaPrincipal pp = PantallaPrincipal.obtenerInstancia();
-            pp.mostrarVentana();
-            seluce();
-            this.dispose();
+                    guardarSolicitudTraslado();
 
-        } catch (Exception e) {
+                    PantallaPrincipal pp = PantallaPrincipal.obtenerInstancia();
+                    pp.mostrarVentana();
+                    seluce();
+                    this.dispose();
 
-            System.out.println(e);
-        }
-        }else{
+                } catch (Exception e) {
+
+                    System.out.println(e);
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "El código y la cantidad deben ser numéricos");
+            }
+
+        } else {
             JOptionPane.showMessageDialog(null, "Existen campos vacíos, verifique su información");
         }
 

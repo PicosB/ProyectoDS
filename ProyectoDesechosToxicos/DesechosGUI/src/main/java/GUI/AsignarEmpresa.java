@@ -257,7 +257,7 @@ public class AsignarEmpresa extends javax.swing.JFrame {
     private void aceptarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarBtnActionPerformed
         // TODO add your handling code here:
         asignarEmpresaTransportista();
-
+        
         PantallaPrincipal pp = PantallaPrincipal.obtenerInstancia();
         pp.mostrarVentana();
         this.dispose();
@@ -297,6 +297,7 @@ public class AsignarEmpresa extends javax.swing.JFrame {
 
             this.solicitudFachada.verificarExistenciaSolicitudTraslado(this.txtCodigo.getText().trim()).setEmpresatransportista(empresaTransportista);
             this.solicitudFachada.asignarEmpresaTransportistaSolicitudTraslado(this.txtCodigo.getText(), empresaTransportista);
+            this.solicitudFachada.marcarAsignadoSolicitudTraslado(this.txtCodigo.getText());
             JOptionPane.showMessageDialog(null, "Se asignó correctamente la empresa.");
 
             /*

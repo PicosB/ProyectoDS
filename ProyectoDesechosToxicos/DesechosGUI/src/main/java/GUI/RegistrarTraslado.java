@@ -16,17 +16,28 @@ import javax.swing.JOptionPane;
  */
 public class RegistrarTraslado extends javax.swing.JFrame {
 
-      Fachada solicitudFachada = new Fachada();
+    Fachada solicitudFachada = new Fachada();
+
     /**
      * Creates new form RegistrarTraslado
      */
     public RegistrarTraslado() {
         initComponents();
     }
-    
-    public void asignarEmpresaTransportista (){
+
+    public boolean validaVacios() {
+        if (this.codigoTxt.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Existen campos vacíos, verifique su información");
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    public void asignarEmpresaTransportista() {
         // 
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -175,28 +186,34 @@ public class RegistrarTraslado extends javax.swing.JFrame {
 
     private void aceptarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarBtnActionPerformed
         // TODO add your handling code here:
-        new AsignarVehiculos(this.codigoTxt.getText()).setVisible(true);
+        if (consultaTrasladosAsignados() !=null){
+             new AsignarVehiculos(this.codigoTxt.getText()).setVisible(true);
         this.setVisible(false);
+        }else{
+            new PantallaPrincipal().setVisible(true);
+            this.dispose();
+        }
+       
     }//GEN-LAST:event_aceptarBtnActionPerformed
 
     private void cancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBtnActionPerformed
         // TODO add your handling code here:
-     new PantallaPrincipal().setVisible(true);
-     this.setVisible(false);
-                
+        new PantallaPrincipal().setVisible(true);
+        this.setVisible(false);
+
     }//GEN-LAST:event_cancelarBtnActionPerformed
-    private SolicitudTraslado consultaTrasladosAsignados(){
-        try{
-            
-        SolicitudTraslado solicitudTraslado = solicitudFachada.verificarExistenciaSolicitudTraslado(this.codigoTxt.getText());
-        
-        this.labelInformacion.setText(solicitudFachada.verificarExistenciaSolicitudTraslado(this.codigoTxt.getText()).toString());
-        return solicitudTraslado;
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Ocurrió un error consultando los traslados, intente de nuevo.");
+    private SolicitudTraslado consultaTrasladosAsignados() {
+        try {
+
+            SolicitudTraslado solicitudTraslado = solicitudFachada.verificarExistenciaSolicitudTraslado(this.codigoTxt.getText());
+
+            this.labelInformacion.setText(solicitudFachada.verificarExistenciaSolicitudTraslado(this.codigoTxt.getText()).toString());
+            return solicitudTraslado;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No se encontró la solicitud.");
             return null;
         }
-        
+
     }
 //    /**
 //     * @param args the command line arguments

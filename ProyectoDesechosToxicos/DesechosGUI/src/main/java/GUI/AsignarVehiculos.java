@@ -37,7 +37,19 @@ public class AsignarVehiculos extends javax.swing.JFrame {
         cargaVehiculos();
         llenarLista();
     }
-
+    
+    public boolean validaVacios (){
+        if(this.txtCantidad.getText().isEmpty()
+                || this.txtCodigo.getText().isEmpty()
+                || this.txtCosto.getText().isEmpty()
+                || this.txtKilometros.getText().isEmpty()
+                || this.txtTratamiento.getText().isEmpty()){
+         JOptionPane.showMessageDialog(null, "Existen campos vacíos, verifique su información");
+         return false;
+        }else{
+            return true;
+        }
+    }
     public void obtenerEmpresaTransportista() {
         try {
             this.labelEmpresaTransportista.setText(this.solicitudFachada.verificarExistenciaSolicitudTraslado(this.codigoSolicitud).getEmpresatransportista().getNombre());
@@ -287,18 +299,27 @@ public class AsignarVehiculos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void aceptarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarBtnActionPerformed
-     
+     if(validaVacios() == true){
         
         try{
+            
+            if(this.trasladoFachada.verificarExistenciaResiduo(this.txtCodigo.getText())==null){
+                
         registrarTraslado();
               JOptionPane.showMessageDialog(null, "Se asignó correctamente el vehículo!");
         PantallaPrincipal pp = PantallaPrincipal.obtenerInstancia();
         pp.mostrarVentana();
         this.dispose();
+            }else{
+                
+                JOptionPane.showMessageDialog(null, "Ya existe un traslado con este código");
+            }
        }catch (Exception e){
            JOptionPane.showMessageDialog(null, "Ocurrió un error, intente de nuevo.");
        }
-       
+     }else{
+         JOptionPane.showMessageDialog(null, "Existen campos vacíos, verifique e intente de nuevo.");
+     }
     }//GEN-LAST:event_aceptarBtnActionPerformed
 
     private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed

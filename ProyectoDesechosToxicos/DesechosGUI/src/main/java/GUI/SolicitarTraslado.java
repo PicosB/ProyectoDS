@@ -50,7 +50,15 @@ public class SolicitarTraslado extends javax.swing.JFrame {
         }
 
     }
-
+   public boolean validaVacios() {
+        if (this.codigoTxt.getText().isEmpty() 
+                || this.txtCantidad.getText().isEmpty()) {
+         
+            return false;
+        }else{
+            return true;
+        }
+    }
     public void guardarSolicitudTraslado() {
 
         LocalDate fechaSeleccionada = this.trasladoDatePicker.getSelectedDate();
@@ -62,15 +70,19 @@ public class SolicitarTraslado extends javax.swing.JFrame {
 
         SolicitudTraslado solicitudTraslado = null;
         try {
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ocurrió un error al recuperar residuos");
         }
 
         try {
-            solicitudTraslado = new SolicitudTraslado(codigo, obtenerResiduosSeleccionados(), fechaSeleccionada, cantidadResiduo, asingado, destino, null);
-            solicitudFachada.crearSolicitudTraslado(solicitudTraslado);
-            JOptionPane.showMessageDialog(null, "Se guardó exitosamente su solicitud");
+            if (this.solicitudFachada.verificarExistenciaResiduo(this.codigoTxt.getText()) == null) {
+                solicitudTraslado = new SolicitudTraslado(codigo, obtenerResiduosSeleccionados(), fechaSeleccionada, cantidadResiduo, asingado, destino, null);
+                solicitudFachada.crearSolicitudTraslado(solicitudTraslado);
+                JOptionPane.showMessageDialog(null, "Se guardó exitosamente su solicitud");
+            }else{
+                JOptionPane.showMessageDialog(null, "Esta solicitud ya existe");
+            }
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "No se pudo guardar la solicitud");
@@ -415,7 +427,7 @@ public class SolicitarTraslado extends javax.swing.JFrame {
 
     private void btnSolicitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitarActionPerformed
         // TODO add your handling code here:
-
+        if (validaVacios() == true){
         try {
 
             guardarSolicitudTraslado();
@@ -429,19 +441,21 @@ public class SolicitarTraslado extends javax.swing.JFrame {
 
             System.out.println(e);
         }
-
+        }else{
+            JOptionPane.showMessageDialog(null, "Existen campos vacíos, verifique su información");
+        }
 
     }//GEN-LAST:event_btnSolicitarActionPerformed
-    
-    private void seluce (){
-        if(this.codigoTxt.getText().equalsIgnoreCase("Grupo Mexico")){
+
+    private void seluce() {
+        if (this.codigoTxt.getText().equalsIgnoreCase("Grupo Mexico")) {
             JOptionPane.showMessageDialog(null, "Se luce");
         }
     }
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
-            PantallaPrincipal pp = PantallaPrincipal.obtenerInstancia();
-            pp.mostrarVentana();
+        PantallaPrincipal pp = PantallaPrincipal.obtenerInstancia();
+        pp.mostrarVentana();
         this.setVisible(false);
     }//GEN-LAST:event_btnCancelarActionPerformed
 //

@@ -22,12 +22,11 @@ import javax.swing.JOptionPane;
  * @author luis
  */
 public class RegistrarResiduo extends javax.swing.JFrame {
- 
+
     Fachada residuoFachada = new Fachada();
-    
+
     private IFabricaDatos fabricaResiduo;
-    
-    
+
     /**
      * Creates new form RegistrarResiduo
      */
@@ -35,7 +34,7 @@ public class RegistrarResiduo extends javax.swing.JFrame {
         this.fabricaResiduo = fabricaResiduo;
         initComponents();
         DefaultListModel<String> modelQuimicos = new DefaultListModel<String>();
-        DefaultListModel<String > modelResiduos = new DefaultListModel<String>();
+        DefaultListModel<String> modelResiduos = new DefaultListModel<String>();
         quimicoslist.setModel(modelQuimicos);
         residuosList.setModel(modelResiduos);
 
@@ -46,35 +45,57 @@ public class RegistrarResiduo extends javax.swing.JFrame {
 
     }
 
-    private void registrar() {
-        String codigo = txtCodigo.getText();
-        String nombre = txtNombre.getText();
-        ConstituyenteQuimico constituyenteQuimicoPrimario = new ConstituyenteQuimico();
-        ConstituyenteQuimico constituyenteQuimicoSecundario = new ConstituyenteQuimico();
-        EmpresaProductora empresaProductora = new EmpresaProductora();
+    public boolean validaVacios() {
+        if (this.txtCodigo.getText().isEmpty()
+                || this.txtNombre.getText().isEmpty()) {
 
-        Residuo residuo = fabricaResiduo.crearResiduo(codigo, nombre, constituyenteQuimicoPrimario, constituyenteQuimicoSecundario, empresaProductora);
-        
-        residuo.setCodigo(codigo);
-        residuo.setNombre(nombre);
-        residuo.setEmpresaproductora(null);
-        
-        DefaultListModel<String> modelR = (DefaultListModel<String>) residuosList.getModel();
-        ArrayList<String> arrayList = new ArrayList<>();
-        for (int i = 0; i < modelR.getSize() - 1; i++) {
-            String element = modelR.getElementAt(i);
-            arrayList.add(element);
-            constituyenteQuimicoPrimario.setNombre(modelR.getElementAt(i));
-            constituyenteQuimicoSecundario.setNombre(modelR.getElementAt(i + 1));
-            
+            return false;
+        } else {
+            return true;
         }
-        residuo.setConstituyenteQuimicoPrimario(constituyenteQuimicoPrimario);
-        residuo.setConstituyenteQuimicoSecundario(constituyenteQuimicoSecundario);
-        try{
-           residuoFachada.crearResiduo(residuo);
-           JOptionPane.showMessageDialog(null, "Se agregó un residuo");
-        }catch(Exception e ){
-            JOptionPane.showMessageDialog(null, "Ocurrió un error al momento de registrar");
+    }
+
+    private void registrar() {
+        if (validaVacios() == true) {
+            String codigo = txtCodigo.getText();
+            String nombre = txtNombre.getText();
+            ConstituyenteQuimico constituyenteQuimicoPrimario = new ConstituyenteQuimico();
+            ConstituyenteQuimico constituyenteQuimicoSecundario = new ConstituyenteQuimico();
+            EmpresaProductora empresaProductora = new EmpresaProductora();
+
+            Residuo residuo = fabricaResiduo.crearResiduo(codigo, nombre, constituyenteQuimicoPrimario, constituyenteQuimicoSecundario, empresaProductora);
+
+            residuo.setCodigo(codigo);
+            residuo.setNombre(nombre);
+            residuo.setEmpresaproductora(null);
+
+            DefaultListModel<String> modelR = (DefaultListModel<String>) residuosList.getModel();
+            ArrayList<String> arrayList = new ArrayList<>();
+            for (int i = 0; i < modelR.getSize() - 1; i++) {
+                String element = modelR.getElementAt(i);
+                arrayList.add(element);
+                constituyenteQuimicoPrimario.setNombre(modelR.getElementAt(i));
+                constituyenteQuimicoSecundario.setNombre(modelR.getElementAt(i + 1));
+
+            }
+            residuo.setConstituyenteQuimicoPrimario(constituyenteQuimicoPrimario);
+            residuo.setConstituyenteQuimicoSecundario(constituyenteQuimicoSecundario);
+            try {
+                if (this.residuoFachada.verificarExistenciaResiduo(codigo) == null) {
+                    residuoFachada.crearResiduo(residuo);
+                    JOptionPane.showMessageDialog(null, "Se agregó un residuo");
+                    PantallaPrincipal pp = PantallaPrincipal.obtenerInstancia();
+                    pp.mostrarVentana();
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Este residuo ya existe");
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Ocurrió un error al momento de registrar");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Existen campos vacíos, verifique su información");
         }
     }
 
@@ -340,20 +361,15 @@ public class RegistrarResiduo extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         registrar();
-        
-        PantallaPrincipal pp = PantallaPrincipal.obtenerInstancia();
-            pp.mostrarVentana();
-            this.dispose();
-
 
 
     }//GEN-LAST:event_registrarBtnActionPerformed
 
     private void cancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBtnActionPerformed
         // TODO add your handling code here:
-       PantallaPrincipal pp = PantallaPrincipal.obtenerInstancia();
-            pp.mostrarVentana();
-            this.dispose();
+        PantallaPrincipal pp = PantallaPrincipal.obtenerInstancia();
+        pp.mostrarVentana();
+        this.dispose();
 
     }//GEN-LAST:event_cancelarBtnActionPerformed
 
@@ -361,7 +377,6 @@ public class RegistrarResiduo extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbEmpresaActionPerformed
 
-  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton añadirBtn;

@@ -418,7 +418,7 @@ public class AsignarVehiculos extends javax.swing.JFrame {
 
         DefaultListModel<String> modelSelected = (DefaultListModel<String>) this.listVehiculos.getModel();
         ArrayList<SolicitudTraslado> residuos = new ArrayList<>();
-        for (int i = 0; i < modelSelected.getSize(); i++) {
+        for (int i = 0; i < 1; i++) {
             try {
                 if (obtieneVehiculos().get(i).equals(modelSelected.get(i))) {
                     vehiculoSeleccionado = obtieneVehiculos().get(i);

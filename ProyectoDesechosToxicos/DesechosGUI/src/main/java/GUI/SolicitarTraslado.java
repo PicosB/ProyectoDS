@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import Fabrica.IFabricaDatos;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
@@ -27,6 +28,7 @@ import javax.swing.JOptionPane;
  */
 public class SolicitarTraslado extends javax.swing.JFrame {
 
+    private IFabricaDatos fabricaSolicitud;
     IResiduoDAO residuoDAO = new ResiduoDAO();
     Fachada residuoFachada = new Fachada();
     Fachada solicitudFachada = new Fachada();
@@ -34,7 +36,8 @@ public class SolicitarTraslado extends javax.swing.JFrame {
     /**
      * Creates new form SolicitarTraslado
      */
-    public SolicitarTraslado() {
+    public SolicitarTraslado(IFabricaDatos fabricaSolicitud) {
+        this.fabricaSolicitud = fabricaSolicitud;
         initComponents();
         DefaultListModel<String> modelDisponibles = new DefaultListModel<String>();
         DefaultListModel<String> modelSeleccionados = new DefaultListModel<String>();
@@ -77,7 +80,7 @@ public class SolicitarTraslado extends javax.swing.JFrame {
 
         try {
             if (this.solicitudFachada.verificarExistenciaResiduo(this.codigoTxt.getText()) == null) {
-                solicitudTraslado = new SolicitudTraslado(codigo, obtenerResiduosSeleccionados(), fechaSeleccionada, cantidadResiduo, asingado, destino, null);
+                solicitudTraslado = fabricaSolicitud.crearSolicitud(codigo, obtenerResiduosSeleccionados(), fechaSeleccionada, cantidadResiduo, asingado, destino, null);
                 solicitudFachada.crearSolicitudTraslado(solicitudTraslado);
                 JOptionPane.showMessageDialog(null, "Se guardó exitosamente su solicitud");
             }else{

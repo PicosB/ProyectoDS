@@ -173,7 +173,9 @@ private static PantallaPrincipal instancia;
 
     private void btnSolicitarTrasladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitarTrasladoActionPerformed
         // TODO add your handling code here:
-        new SolicitarTraslado().setVisible(true);
+        IFabricaDatos fabricaSolicitud = new FabricaDatos();
+        SolicitarTraslado st = new SolicitarTraslado(fabricaSolicitud);
+        st.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnSolicitarTrasladoActionPerformed
 
